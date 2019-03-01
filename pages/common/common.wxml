@@ -1,0 +1,91 @@
+<!-- pages/common/common.wxml -->
+<view class="index-container">
+    <view class="swiper-container">
+        <swiper class="swiper-item" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}"
+                duration="{{duration}}">
+            <block wx:for="{{imgUrls}}">
+                <swiper-item>
+                    <image src="{{item}}" class="slide-image" width="355" height="150"/>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <view class="index-card-container">
+        <view class="index-card-item">
+            <text>国内酒店</text>
+            <view class="index-pannel">
+                <!-- 用户位置 -->
+                <view class="index-input">
+                    <view class="index-input-title-prev" >
+                        <i-icon type="coordinates" />
+                    </view>
+                    <input class="index-input-item" disabled='disabled' value="{{location}}{{county}}"
+                           bindtap="bindEnterCityTap"/>
+                    <i-icon type="enter"/>
+                    <view class="index-input-my" bindtap="getLocation">
+                        <i-icon type="Location" custom/>
+                        <text>我的位置</text>
+                    </view>
+                </view>
+                <view class="index-input-line"></view>
+                <!-- 选择时间 -->
+
+                <view class="index-input">
+                    <view class="index-input-title-prev">
+                        <i-icon type="Date"/>
+                    </view>
+                    <view class="index-input-next"
+                          style="{{(dateInTimeArray==null&dateOutTimeArray==null)?'width: 100%;letter-spacing: 8px;':''}}">
+                        <view class="index-input-entry">
+                            <text>入住</text>
+                            <!-- 入住时间 -->
+                            <picker mode="multiSelector" value="{{dateInTime}}"
+                                    bindcolumnchange="changeDateInTimeColumn"
+                                    range="{{dateInTimeArray}}">
+                                <view>
+                                    {{dateInTimeArray[0][dateInTime[0]]}}/{{dateInTimeArray[1][dateInTime[1]]}}/{{Inday}}
+                                </view>
+                            </picker>
+                        </view>
+                        <text>|</text>
+                        <view class="index-input-out">
+                            <text>退房</text>
+                            <picker mode="multiSelector" value="{{dateOutTime}}"
+                                    bindcolumnchange="changeDateOutTimeColumn"
+                                    range="{{dateOutTimeArray}}">
+                                <view>
+                                    {{dateOutTimeArray[0][dateOutTime[0]]}}/{{dateOutTimeArray[1][dateOutTime[1]]}}/{{Outday}}
+                                </view>
+                            </picker>
+                        </view>
+                    </view>
+                    <view class="index-icon"
+                          style="{{(dateInTimeArray==null&dateOutTimeArray==null)?'right: -10px;':'right: -10px;'}}">
+                        <i-icon type="enter"/>
+                    </view>
+                </view>
+                <view class="index-input-line"></view>
+                <!-- 用户搜索 -->
+                <view class="index-input">
+                    <view class="index-input-title-prev">
+                        <i-icon type="search"/>
+                    </view>
+                    <input class="index-input-item" disabled='disabled' placeholder="关键字/位置/品牌/酒店名"/>
+                    <view class="index-icon">
+                        <i-icon type="enter"/>
+                    </view>
+                </view>
+                <view class="index-input-line"></view>
+                <view class="index-button">
+                    <i-button bind:click="handleClick" type="primary" size="small">订酒店</i-button>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="index-footer">
+        <view class="footer-line"></view>
+        <text>Wehotel 全球超一亿会员的选择</text>
+        <view class="footer-line"></view>
+    </view>
+
+</view>

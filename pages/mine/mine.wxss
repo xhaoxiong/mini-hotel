@@ -1,0 +1,117 @@
+/* pages/mine/mine.wxss */
+page {
+    height: 100%;
+}
+
+.mine-container {
+    background-color: #dddddd;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.mine-top {
+    padding: 15px;
+    display: flex;
+    background-color: #ffffff;
+}
+
+.mine-top-item-login {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 20px;
+}
+
+.mine-top-item-logout {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.mine-top-item-logout-m {
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 2px;
+
+}
+
+.mine-top-item-lm-pre {
+    font-size: 16px;
+}
+
+.mine-top-item-lm-next {
+    font-size: 12px;
+}
+
+.mine-top-item-logout-arrow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mine-top-item-arrow {
+    margin-left: 80px;
+}
+
+.mine-avatar {
+    display: block;
+}
+
+.mine-top-userinfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+.mine-nickname {
+    display: flex;
+}
+
+.mine-wechat {
+    display: flex;
+    font-size: 12px;
+}
+
+.mine-list {
+    margin-top: 15px;
+    border-top: solid 1px #dddddd;
+}
+
+.mine-logout {
+    position: relative;
+    padding: 6px 15px;
+    display: flex;
+    background: #fff;
+    align-items: center;
+    line-height: 1.4;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.mine-logout-bd {
+    width: 100%;
+    color: #FF0000;
+}
+
+.mine-footer {
+    height: 100%;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 12px;
+    letter-spacing: normal;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 38px;
+}
+
+.mine-getinfo {
+    padding: 0;
+    font-size: 14px;
+    border-radius: 0;
+
+    background-color: #ffffff;
+}

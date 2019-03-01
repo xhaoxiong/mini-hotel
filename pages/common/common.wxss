@@ -1,0 +1,106 @@
+/* pages/common/common.wxss */
+.index-container{
+ height: 100%;
+}
+.swiper-container{
+    margin-top: 2rpx;
+}
+.swiper-item{
+    height: 375rpx;
+}
+
+.index-card-container{
+    margin: 40rpx;
+    background-color:#fff;
+    box-shadow: 0 0 10rpx #1a1919;
+    height: 550rpx;
+    overflow-y: auto;
+}
+
+.index-card-item{
+    text-align: center;
+    margin: 10rpx;
+}
+
+.index-input{
+    align-items: center;
+    line-height: 1.4;
+    font-size: 12px;
+    overflow: hidden;
+    padding: 7px 15px;
+    color: #495060;
+    display: flex;
+    position: relative;
+    width: 270px;
+}
+.index-input-title-prev{
+    margin-left: 20px;
+}
+
+.index-input-title{
+    min-width: 45px;
+    margin-left: 2px;
+}
+
+.index-input-item{
+    width: 160px;
+}
+
+.index-input-my{
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.index-input-line{
+    width: 250px;
+    height: 1px;
+    background-color:#dddddd;
+    margin-left: 34px;
+}
+.index-icon{
+    position: relative;
+    right: -40px;
+}
+
+.index-button{
+    max-width: 260px;
+    margin:0 auto;
+    margin-top: 40px;
+}
+.index-footer{
+    margin-top: 45px;
+    text-align: center;
+}
+
+.index-footer text{
+    font-size: 12px;
+    vertical-align: middle;
+    margin: 0 4px 0 4px;
+}
+
+ .footer-line{
+   display: inline-block;
+   width: 60px;
+   vertical-align: middle;
+   border-top: 1px solid rgb(85, 84, 84) ;
+}
+
+
+.common-bar{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border:1rpx 0 0 0 solid #dddddd;
+}
+image{
+width: 100%;
+}
+.line{
+    width:100%;
+    height:2px;
+    margin:0px auto;
+    padding:0px;
+    background-color:rgb(82, 78, 78);
+    overflow:hidden;
+}

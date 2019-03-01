@@ -1,0 +1,38 @@
+/* pages/order/order.wxss */
+
+page {
+    background-color: #dddddd;
+}
+
+.order-panel {
+    margin-top: 46px;
+}
+
+.order-card-i {
+    margin: 2px;
+    font-size: 12px;
+}
+
+.order-card-bv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-card-b {
+    width: 80px;
+    height: 30px;
+    font-size: 12px;
+    margin: 0 4px;
+}
+
+.card-b-pay {
+    color: #2d8cf0;
+
+}
+
+.card-b-pay::after {
+    border: 1px solid #2d8cf0;
+}
+
+
+

@@ -1,0 +1,67 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/common/common",
+    "pages/home/home",
+    "pages/switchcity/switchcity",
+    "pages/datetimepicker/datetimepicker",
+    "pages/mine/mine",
+    "pages/login/login",
+    "pages/order/order",
+    "pages/order/detail/detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "i-button": "/dist/button/index",
+    "i-tab-bar": "/dist/tab-bar/index",
+    "i-tab-bar-item": "/dist/tab-bar-item/index",
+    "i-index": "/dist/index/index",
+    "i-index-item": "/dist/index-item/index",
+    "i-input": "/dist/input/index",
+    "i-icon": "/dist/icon/index",
+    "i-cell-group": "/dist/cell-group/index",
+    "i-cell": "/dist/cell/index",
+    "i-avatar": "/dist/avatar/index",
+    "i-tabs": "/dist/tabs/index",
+    "i-tab": "/dist/tab/index",
+    "i-card": "/dist/card/index",
+    "i-load-more": "/dist/load-more/index",
+    "i-toast": "/dist/toast/index"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "tabBar": {
+    "color": "#353535",
+    "selectedColor": "#000000",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/common/common",
+        "text": "首页",
+        "iconPath": "images/homepage.png",
+        "selectedIconPath": "/images/homepage_fill.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "images/barrage.png",
+        "selectedIconPath": "/images/barrage_fill.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/mine_fill.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+/* pages/login/login.wxss */
+
+page {
+    height: 100%;
+    background-color: #dddddd;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.login-logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.login-panel {
+    margin: 30px;
+    background-color: #ffffff;
+}
+
+.login-panel-bottom{
+    margin:0 20px;
+}
+
+.login-input {
+    align-items: center;
+    line-height: 1.4;
+    font-size: 12px;
+    overflow: hidden;
+    padding: 7px 15px;
+    color: #495060;
+    display: flex;
+    position: relative;
+    width: 270px;
+}
+
+.login-input-title-prev {
+    margin-left: 20px;
+}
+
+.login-input-next {
+    max-width: 170px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 4px 0 16px;
+}
+
+.login-input-line {
+    width: 250px;
+    height: 1px;
+    background-color: #dddddd;
+    margin-left: 34px;
+}
+.login-verify-g{
+    color: #2d8cf0;
+}

@@ -1,0 +1,99 @@
+<!--pages/mine/mine.wxml-->
+<view class="mine-container">
+    <!--头像模块-->
+
+    <i-pannel hide-top="true" title="上部分">
+        <view class="mine-top">
+            <view wx:if="{{userinfo}}">
+                <view class="mine-top-item-login" bindtap="mobileHandle">
+                    <view class="mine-avatar">
+                        <i-avatar src="{{userinfo.avatarUrl}}" size="default"></i-avatar>
+                    </view>
+
+                    <view class="mine-top-userinfo">
+                        <!--昵称-->
+                        <view class="mine-nickname">
+                            <text>{{userinfo.nickName}}</text>
+                        </view>
+                        <!--微信号-->
+                        <view class="mine-wechat">
+                            <text>微信号:</text>
+                            <text>xhx269812428</text>
+                            <view class="mine-top-item-arrow">
+                                <i-icon type="enter"/>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view wx:else>
+                <view class="mine-top-item-logout">
+                    <view class="mine-top-item-logout-m">
+                        <view class="mine-top-item-lm-pre">
+                            <text>完善信息</text>
+                        </view>
+                        <view class="mine-top-item-lm-next">
+                            <text>完善后享受更多特权</text>
+                        </view>
+                    </view>
+                    <view class="mine-top-item-logout-arrow">
+                        <i-icon type="enter"/>
+                    </view>
+
+                </view>
+            </view>
+        </view>
+
+
+        <!--选项列表-->
+        <view class="mine-list">
+            <i-cell-group>
+                <i-cell icon="accessory" is-link>
+                    <i-icon type="accessory"/>
+                    <text>测试测试链接</text>
+                </i-cell>
+                <i-cell icon="accessory" is-link>
+                    <i-icon type="accessory"/>
+                    <text>测试测试链接</text>
+                </i-cell>
+                <i-cell icon="accessory" is-link>
+                    <i-icon type="accessory"/>
+                    <text>测试测试链接</text>
+                </i-cell>
+                <i-cell icon="accessory" is-link>
+                    <i-icon type="accessory"/>
+                    <text>测试测试链接</text>
+                </i-cell>
+                <i-cell icon="accessory" is-link>
+                    <i-icon type="accessory"/>
+                    <text>测试测试链接</text>
+                </i-cell>
+                <i-cell icon="accessory" is-link>
+                    <i-icon type="accessory"/>
+                    <text>测试测试链接</text>
+                </i-cell>
+            </i-cell-group>
+        </view>
+    </i-pannel>
+
+    <view style="margin-top: 20px;text-align: center">
+        <view wx:if="userinfo">
+            <button open-type="getUserInfo" bindgetuserinfo="getInfo" class="mine-getinfo">
+                完善用户信息
+            </button>
+        </view>
+        <view wx:if="{{isbind}}">
+            <view class="mine-logout">
+                <view class="mine-logout-bd">
+                    <text bindtap="cancelBind">取消绑定</text>
+                </view>
+            </view>
+        </view>
+
+    </view>
+    <i-toast id="toast"/>
+    <view class="mine-footer">
+        <text>隐私政策</text>
+    </view>
+
+</view>
