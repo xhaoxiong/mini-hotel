@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
     "pages/common/common",
     "pages/home/home",
     "pages/switchcity/switchcity",
@@ -9,7 +8,9 @@
     "pages/mine/mine",
     "pages/login/login",
     "pages/order/order",
-    "pages/order/detail/detail"
+    "pages/order/detail/detail",
+    "pages/hotel/hotel",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",

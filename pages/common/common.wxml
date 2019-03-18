@@ -16,8 +16,8 @@
             <view class="index-pannel">
                 <!-- 用户位置 -->
                 <view class="index-input">
-                    <view class="index-input-title-prev" >
-                        <i-icon type="coordinates" />
+                    <view class="index-input-title-prev">
+                        <i-icon type="coordinates"/>
                     </view>
                     <input class="index-input-item" disabled='disabled' value="{{location}}{{county}}"
                            bindtap="bindEnterCityTap"/>
@@ -43,7 +43,7 @@
                                     bindcolumnchange="changeDateInTimeColumn"
                                     range="{{dateInTimeArray}}">
                                 <view>
-                                    {{dateInTimeArray[0][dateInTime[0]]}}/{{dateInTimeArray[1][dateInTime[1]]}}/{{Inday}}
+                                    {{dateInTimeArray[1][dateInTime[1]]}}/{{Inday}}
                                 </view>
                             </picker>
                         </view>
@@ -54,7 +54,7 @@
                                     bindcolumnchange="changeDateOutTimeColumn"
                                     range="{{dateOutTimeArray}}">
                                 <view>
-                                    {{dateOutTimeArray[0][dateOutTime[0]]}}/{{dateOutTimeArray[1][dateOutTime[1]]}}/{{Outday}}
+                                    {{dateOutTimeArray[1][dateOutTime[1]]}}/{{Outday}}
                                 </view>
                             </picker>
                         </view>

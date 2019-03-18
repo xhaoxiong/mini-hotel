@@ -1,28 +1,31 @@
 /* pages/common/common.wxss */
-.index-container{
- height: 100%;
+.index-container {
+    height: 100%;
 }
-.swiper-container{
-    margin-top: 2rpx;
+
+.swiper-container {
+    margin-top: 2 rpx;
 }
-.swiper-item{
+
+.swiper-item {
     height: 375rpx;
 }
 
-.index-card-container{
+.index-card-container {
     margin: 40rpx;
-    background-color:#fff;
+    background-color: #fff;
     box-shadow: 0 0 10rpx #1a1919;
     height: 550rpx;
     overflow-y: auto;
 }
 
-.index-card-item{
+.index-card-item {
     text-align: center;
-    margin: 10rpx;
+    margin: 40rpx 40rpx 0 40rpx;
+
 }
 
-.index-input{
+.index-input {
     align-items: center;
     line-height: 1.4;
     font-size: 12px;
@@ -33,74 +36,86 @@
     position: relative;
     width: 270px;
 }
-.index-input-title-prev{
+
+.index-input-title-prev {
     margin-left: 20px;
 }
 
-.index-input-title{
+.index-input-title {
     min-width: 45px;
     margin-left: 2px;
 }
 
-.index-input-item{
+.index-input-item {
     width: 160px;
 }
 
-.index-input-my{
+.index-input-my {
     margin-left: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.index-input-line{
+
+.index-input-line {
     width: 250px;
     height: 1px;
-    background-color:#dddddd;
+    background-color: #dddddd;
     margin-left: 34px;
 }
-.index-icon{
+
+.index-icon {
     position: relative;
     right: -40px;
 }
 
-.index-button{
+.index-button {
     max-width: 260px;
-    margin:0 auto;
+    margin: 0 auto;
     margin-top: 40px;
 }
-.index-footer{
-    margin-top: 45px;
+
+.index-footer {
+    margin-top: 40px;
     text-align: center;
 }
 
-.index-footer text{
+.index-footer text {
     font-size: 12px;
     vertical-align: middle;
     margin: 0 4px 0 4px;
 }
 
- .footer-line{
-   display: inline-block;
-   width: 60px;
-   vertical-align: middle;
-   border-top: 1px solid rgb(85, 84, 84) ;
+.footer-line {
+    display: inline-block;
+    width: 60px;
+    vertical-align: middle;
+    border-top: 1px solid rgb(85, 84, 84);
 }
 
-
-.common-bar{
+.common-bar {
     position: absolute;
     bottom: 0;
     width: 100%;
-    border:1rpx 0 0 0 solid #dddddd;
+    border: 1rpx 0 0 0 solid #dddddd;
 }
-image{
-width: 100%;
+
+image {
+    width: 100%;
 }
-.line{
-    width:100%;
-    height:2px;
-    margin:0px auto;
-    padding:0px;
-    background-color:rgb(82, 78, 78);
-    overflow:hidden;
+
+.line {
+    width: 100%;
+    height: 2px;
+    margin: 0px auto;
+    padding: 0px;
+    background-color: rgb(82, 78, 78);
+    overflow: hidden;
+}
+
+.index-input-next {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+
 }
