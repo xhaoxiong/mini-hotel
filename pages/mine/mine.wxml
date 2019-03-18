@@ -5,24 +5,17 @@
     <i-pannel hide-top="true" title="上部分">
         <view class="mine-top">
             <view wx:if="{{userinfo}}">
-                <view class="mine-top-item-login" bindtap="mobileHandle">
+                <view class="mine-top-item-login">
                     <view class="mine-avatar">
                         <i-avatar src="{{userinfo.avatarUrl}}" size="default"></i-avatar>
                     </view>
 
-                    <view class="mine-top-userinfo">
+                    <view class="mine-top-userinfo" bindtap="mobileHandle">
                         <!--昵称-->
                         <view class="mine-nickname">
                             <text>{{userinfo.nickName}}</text>
                         </view>
                         <!--微信号-->
-                        <view class="mine-wechat">
-                            <text>微信号:</text>
-                            <text>xhx269812428</text>
-                            <view class="mine-top-item-arrow">
-                                <i-icon type="enter"/>
-                            </view>
-                        </view>
                     </view>
                 </view>
             </view>
