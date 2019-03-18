@@ -1,0 +1,36 @@
+<!--pages/search/search.wxml-->
+<view>
+    <view class="search-bar">
+        <view style="display: flex;width: 100%">
+            <i-icon class="search-icon" size="18" type="search" style="display:inline-block;"/>
+            <input class="search-input" bindinput="searchContent" style="display:inline-block;" type="text"
+                   placeholder="请输入酒店关键字"/>
+        </view>
+    </view>
+
+
+    <view class="search-pannel" id="search-pannel" style="{{(searchState)?'display: block;':'display: none;'}}">
+        <view class="pannel-item">
+            <view class="item-word">
+                筛选
+            </view>
+            <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
+        </view>
+        <view class="pannel-item">
+            <view class="item-word">
+                筛选
+            </view>
+            <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
+        </view>
+        <view class="pannel-item">
+            <view class="item-word">
+                筛选
+            </view>
+            <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
+        </view>
+    </view>
+
+
+</view>
+
+

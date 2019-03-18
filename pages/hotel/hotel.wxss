@@ -1,0 +1,82 @@
+/* pages/hotel/hotel.wxss */
+.hotel-list-top {
+    display: flex;
+    width: 100%;
+    height: 42px;
+    line-height: 42px;
+    justify-content: space-around;
+    position: relative;
+    align-items: center;
+    background-color: #ffffff;
+}
+
+page {
+    background-color: #dddddd;
+    height: 100%;
+}
+
+.hotel-list {
+    margin-top: 2px;
+    background-color: #ffffff;
+    width: 100%;
+}
+
+.select-item {
+    flex: 1;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    font-size: 14px;
+}
+
+.hotel-avatar {
+    width: 95px;
+    height: 95px;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.hotel-info {
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    flex-direction: column;
+
+}
+
+.hotel-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-sizing:border-box;
+
+}
+
+.pannel {
+    z-index: 100;
+    margin-top: 2px;
+    background-color: #ffffff;
+    height: 200px;
+    position: fixed;
+    top: 42px;
+    padding: 2px 8px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.pannel-item {
+    padding: 6px 20px 0 6px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.item-word {
+    padding: 6px;
+}
