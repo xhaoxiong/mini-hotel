@@ -1,0 +1,65 @@
+<!--pages/hotel/detail/detail.wxml-->
+
+<view class="detail-container">
+    <view class="detail-room-container">
+        <view class="detail-room-top">
+            <i-icon type="Date"/>
+
+            <view class="detail-room-date">
+                <picker mode="multiSelector" value="{{dateInTime}}"
+                        bindcolumnchange="changeDateInTimeColumn"
+                        range="{{dateInTimeArray}}">
+                    <view>
+                        {{dateInTimeArray[1][dateInTime[1]]}}/{{Inday}}
+                    </view>
+                </picker>
+                -
+                <picker mode="multiSelector" value="{{dateOutTime}}"
+                        bindcolumnchange="changeDateOutTimeColumn"
+                        range="{{dateOutTimeArray}}">
+                    <view>
+                        {{dateOutTimeArray[1][dateOutTime[1]]}}/{{Outday}}
+                    </view>
+                </picker>
+            </view>
+
+
+        </view>
+    </view>
+    <view wx:for="{{results}}">
+        <view class="detail-room-list">
+            <view class="detail-room-item">
+                <image class="detail-room-avatar"
+                       src="https://img.hacpai.com/file/2019/02/2704D806CF5B732301E0761FD588C1DD副本-9e8a92af.jpg"
+                       mode="aspectFill">
+                </image>
+                <view class="detail-room-info">
+                    <view class="detail-room-info-left">
+                        <view class="room-info-name">优质双床房</view>
+                        <view class="room-info-standard">
+                            规格:床
+                        </view>
+                    </view>
+
+                    <view class="detail-room-info-right">
+                        ￥116起
+                        <i-button bind:click="handleOpen1" data-item="{{item}}" size="small">预订</i-button>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+
+    <i-modal title="标题" visible="{{ visible1 }}" bind:ok="handleClose1" bind:cancel="handleClose1">
+        <view>{{result.id}}</view>
+        <view>一些文本</view>
+        <view>一些文本</view>
+        <view>一些文本</view>
+        <view>一些文本</view>
+        <view>一些文本</view>
+        <view>一些文本</view>
+        <view>一些文本</view>
+        <view>一些文本</view>
+    </i-modal>
+</view>

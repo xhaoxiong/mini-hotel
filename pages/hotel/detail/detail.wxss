@@ -1,0 +1,67 @@
+/* pages/hotel/detail/detail.wxss */
+
+page {
+    background-color: #dddddd;
+}
+
+.detail-room-container {
+    margin-top: 8px;
+    background-color: #ffffff;
+}
+
+.detail-room-top {
+    font-size: 16px;
+    display: flex;
+    padding: 16px 8px;
+}
+
+.detail-room-date {
+    display: flex;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.detail-room-list {
+    background-color: #ffffff;
+    margin-top: 1px;
+    padding: 4px 8px;
+}
+
+.detail-room-item {
+    display: flex;
+}
+
+.detail-room-avatar {
+    height: 78px;
+    width: 78px;
+}
+
+.detail-room-info {
+    display: flex;
+    justify-content: space-between;
+
+    margin-left: 60px;
+    width: 60%;
+    font-size: 16px;
+}
+
+.detail-room-info-left {
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.room-info-name {
+
+}
+
+.room-info-standard {
+
+}
+
+.detail-room-info-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
