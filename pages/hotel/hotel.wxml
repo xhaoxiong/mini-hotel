@@ -85,143 +85,28 @@
     </view>
 
 
-    <view class="hotel-list">
+    <view wx:for="{{hotelList}}" class="hotel-list">
         <view class="hotel-item">
-            <image class="hotel-avatar" src="https://img.hacpai.com/2019/01/image-e117a8d2.png" mode="aspectFill">
+            <image class="hotel-avatar" src="{{item.picture}}" mode="aspectFill">
             </image>
             <view class="hotel-info">
                 <view class="hotel-title">
-                    维也纳大酒店
+                    {{item.chineseName}}
                 </view>
                 <view class="hotel-detail-info">
                     <view class="hotel-detail-info-pre">
-                        具体信息什么的
+                        {{item.address}}
                     </view>
 
-                    <view class="hotel-price">￥255起</view>
-                </view>
-                <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
-            </view>
-        </view>
-        <view class="hotel-item">
-            <image class="hotel-avatar" src="https://img.hacpai.com/2019/01/image-e117a8d2.png" mode="aspectFill">
-            </image>
-            <view class="hotel-info">
-                <view class="hotel-title">
-                    维也纳大酒店
-                </view>
-                <view class="hotel-detail-info">
-                    <view class="hotel-detail-info-pre">
-                        具体信息什么的
-                    </view>
-
-                    <view class="hotel-price">￥255起</view>
-                </view>
-                <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
-            </view>
-        </view>
-        <view class="hotel-item">
-            <image class="hotel-avatar" src="https://img.hacpai.com/2019/01/image-e117a8d2.png" mode="aspectFill">
-            </image>
-            <view class="hotel-info">
-                <view class="hotel-title">
-                    维也纳大酒店
-                </view>
-                <view class="hotel-detail-info">
-                    <view class="hotel-detail-info-pre">
-                        具体信息什么的
-                    </view>
-
-                    <view class="hotel-price">￥255起</view>
-                </view>
-                <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
-            </view>
-        </view>
-        <view class="hotel-item">
-            <image class="hotel-avatar" src="https://img.hacpai.com/2019/01/image-e117a8d2.png" mode="aspectFill">
-            </image>
-            <view class="hotel-info">
-                <view class="hotel-title">
-                    维也纳大酒店
-                </view>
-                <view class="hotel-detail-info">
-                    <view class="hotel-detail-info-pre">
-                        具体信息什么的
-                    </view>
-
-                    <view class="hotel-price">￥255起</view>
-                </view>
-                <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
-            </view>
-        </view>
-        <view class="hotel-item">
-            <image class="hotel-avatar" src="https://img.hacpai.com/2019/01/image-e117a8d2.png" mode="aspectFill">
-            </image>
-            <view class="hotel-info">
-                <view class="hotel-title">
-                    维也纳大酒店
-                </view>
-                <view class="hotel-detail-info">
-                    <view class="hotel-detail-info-pre">
-                        具体信息什么的
-                    </view>
-
-                    <view class="hotel-price">￥255起</view>
-                </view>
-                <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
-            </view>
-        </view>
-        <view class="hotel-item">
-            <image class="hotel-avatar" src="https://img.hacpai.com/2019/01/image-e117a8d2.png" mode="aspectFill">
-            </image>
-            <view class="hotel-info">
-                <view class="hotel-title">
-                    维也纳大酒店
-                </view>
-                <view class="hotel-detail-info">
-                    <view class="hotel-detail-info-pre">
-                        具体信息什么的
-                    </view>
-
-                    <view class="hotel-price">￥255起</view>
-                </view>
-                <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
-            </view>
-        </view>
-        <view class="hotel-item">
-            <image class="hotel-avatar" src="https://img.hacpai.com/2019/01/image-e117a8d2.png" mode="aspectFill">
-            </image>
-            <view class="hotel-info">
-                <view class="hotel-title">
-                    维也纳大酒店
-                </view>
-                <view class="hotel-detail-info">
-                    <view class="hotel-detail-info-pre">
-                        具体信息什么的
-                    </view>
-
-                    <view class="hotel-price">￥255起</view>
-                </view>
-                <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
-            </view>
-        </view>
-        <view class="hotel-item">
-            <image class="hotel-avatar" src="https://img.hacpai.com/2019/01/image-e117a8d2.png" mode="aspectFill">
-            </image>
-            <view class="hotel-info">
-                <view class="hotel-title">
-                    维也纳大酒店
-                </view>
-                <view class="hotel-detail-info">
-                    <view class="hotel-detail-info-pre">
-                        具体信息什么的
-                    </view>
-
-                    <view class="hotel-price">￥255起</view>
+                    <view class="hotel-price">￥{{item.price}}起</view>
                 </view>
                 <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
             </view>
         </view>
 
+
+    </view>
+    <view >
+        <loading wx:if="{{showLoading}}">加载中</loading>
     </view>
 </view>

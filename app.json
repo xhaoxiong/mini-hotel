@@ -10,7 +10,8 @@
     "pages/order/order",
     "pages/order/detail/detail",
     "pages/hotel/hotel",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/hotel/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -33,7 +34,8 @@
     "i-tab": "/dist/tab/index",
     "i-card": "/dist/card/index",
     "i-load-more": "/dist/load-more/index",
-    "i-toast": "/dist/toast/index"
+    "i-toast": "/dist/toast/index",
+    "i-modal": "/dist/modal/index"
   },
   "permission": {
     "scope.userLocation": {

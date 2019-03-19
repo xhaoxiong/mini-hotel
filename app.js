@@ -53,7 +53,7 @@ App({
                         },
                         success: res => {
                             console.log(res);
-                            if (res.data.status === 10000) {
+                            if (res.data.code === 10000) {
                                 that.globalData.openid = res.data.userinfo.openid;
                                 that.globalData.token = res.data.userinfo.token;
                                 that.globalData.sessionKey = res.data.userinfo.sessionKey;
@@ -95,7 +95,7 @@ App({
                 'Authorization': `Bearer ${that.globalData.token}`
             },
             success: res => {
-                if (res.data.status === 10000) {
+                if (res.data.code === 10000) {
                     wx.showToast({
                         title: '登陆成功'
 

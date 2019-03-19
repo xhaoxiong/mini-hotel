@@ -20,6 +20,7 @@
     <navigator url="../datetimepicker/datetimepicker">时间选择器</navigator>
     <navigator url="../hotel/hotel">酒店列表</navigator>
     <navigator url="../search/search">搜索页面</navigator>
+    <navigator url="../hotel/detail/detail">酒店详情</navigator>
     <view bindtap="loginTap">
         登陆
     </view>
