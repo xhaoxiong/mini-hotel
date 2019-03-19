@@ -1,6 +1,10 @@
 <!--pages/hotel/detail/detail.wxml-->
 
 <view class="detail-container">
+
+
+
+
     <view class="detail-room-container">
         <view class="detail-room-top">
             <i-icon type="Date"/>

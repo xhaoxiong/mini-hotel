@@ -18,7 +18,8 @@ Page({
         endYear: 2050,
         Inday: '',
         Outday: '',
-
+        date: '',
+        hotelId: '',
         results: [
             {
                 "id": 1
@@ -66,7 +67,7 @@ Page({
     },
 
     handleOpen1(e) {
-        console.log(e.target.dataset.item);
+        console.log(this.data.hotelId);
         this.setData({
             result: e.target.dataset.item,
             visible1: true,
@@ -80,13 +81,54 @@ Page({
         });
     },
 
+    getRoomList: function () {
+        let that = this;
+        let reqParams = {
+            hotelId: that.data.hotelId,
+            inDate: that.data.date,
+        }
+        console.log(reqParams);
+        wx.request({
+            url: "https://mini.xhxblog.cn/hotel/room/price",
+            method: 'POST',
+            data: JSON.stringify(reqParams),
+            header: {
+                'Content-Type': 'application/json',
+            },
+            success: res => {
+                console.log(res);
+                that.setData({
+                    results: res.data
+                })
+            }
+        })
+    },
+
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        let that = this;
         let obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
         let time = dateTimePicker.getHourMinu();
         obj.dateTime[2] = parseInt((obj.defaultDay).substring(0, 2)) - 1; //day 字符串 'xx日' 转 'int'
+        let M = obj.dateTime[1] + 1;
+        let D = obj.dateTime[2] + 1;
+        let Ms = "";
+        let Ds = "";
+        if (M < 10) {
+            Ms = "0" + M
+        } else {
+            Ms = M
+        }
+        if (D < 10) {
+            Ds = "0" + D
+        } else {
+            Ds = D
+        }
+        console.log(D)
+        console.log(M)
         this.setData({
             dateInTime: obj.dateTime,
             dateInTimeArray: obj.dateTimeArray,
@@ -94,8 +136,11 @@ Page({
             dateOutTimeArray: obj.dateTimeArray,
             Outday: obj.defaultDay,
             Inday: obj.defaultDay,
-            time: time
+            time: time,
+            hotelId: options.hotelId,
+            date: "20" + obj.dateTime[0] + "-" + Ms + "-" + Ds,
         });
+        that.getRoomList()
     },
 
     /**

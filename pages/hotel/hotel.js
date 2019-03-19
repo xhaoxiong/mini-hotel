@@ -28,6 +28,13 @@ Page({
         showLoading: false,
     },
 
+    showDetail: function (e) {
+        let hotelId = e.currentTarget.dataset.item.hotelId;
+        wx.navigateTo({
+            url: './detail/detail?hotelId=' + hotelId,
+        })
+    },
+
     getHotelList: function () {
         let that = this;
 
