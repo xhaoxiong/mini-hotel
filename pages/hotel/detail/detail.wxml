@@ -3,8 +3,6 @@
 <view class="detail-container">
 
 
-
-
     <view class="detail-room-container">
         <view class="detail-room-top">
             <i-icon type="Date"/>
@@ -39,31 +37,53 @@
                 </image>
                 <view class="detail-room-info">
                     <view class="detail-room-info-left">
-                        <view class="room-info-name">优质双床房</view>
+                        <view class="room-info-name">{{item.roomNameCn}}</view>
                         <view class="room-info-standard">
-                            规格:床
+                            {{item.bedDescription}}-{{item.area}}-{{item.floor}}-{{item.isExtraBed}}
                         </view>
                     </view>
 
                     <view class="detail-room-info-right">
                         ￥116起
-                        <i-button bind:click="handleOpen1" data-item="{{item}}" size="small">预订</i-button>
+                        <view bindtap="showPannel" data-item="{{index}}">
+
+                            <view wx:if="{{item.status}}">
+                                <i-icon type="enter"/>
+                            </view>
+                            <view wx:else>
+                                换一个图标
+                            </view>
+                        </view>
                     </view>
+
                 </view>
             </view>
+        </view>
+        <view wx:for="{{item.ratePlanInfo}}" wx:for-item="rItem">
+            <view class="room-list-pannel" style="{{(item.status)?'display: flex;':'display: none;'}}">
+                <view class="room-pannel-name">
+                    {{rItem.name}}
+                </view>
+
+                <view class="room-pannel-right">
+                    <view>￥{{rItem.averagePrice}}</view>
+                    <i-button bind:click="handleOpen1" data-item="{{rItem}}" size="small">预订</i-button>
+                </view>
+            </view>
+
         </view>
     </view>
 
 
-    <i-modal title="标题" visible="{{ visible1 }}" bind:ok="handleClose1" bind:cancel="handleClose1">
-        <view>{{result.id}}</view>
-        <view>一些文本</view>
-        <view>一些文本</view>
-        <view>一些文本</view>
-        <view>一些文本</view>
-        <view>一些文本</view>
-        <view>一些文本</view>
-        <view>一些文本</view>
-        <view>一些文本</view>
+    <i-modal title="房间详细信息" visible="{{ visible1 }}" bind:ok="handleClose1" bind:cancel="handleClose1">
+        <view class="room-info">
+            {{result.bedInfo}}
+
+            {{result.bedType}}
+            {{result.mealInfo}}
+            {{result.networkInfo}}
+            {{result.averagePrice}}
+            {{result.ratePrice}}
+        </view>
     </i-modal>
 </view>

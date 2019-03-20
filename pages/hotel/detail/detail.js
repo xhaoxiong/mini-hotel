@@ -21,12 +21,27 @@ Page({
         date: '',
         hotelId: '',
         results: [
-            {
-                "id": 1
-            },
-            {
-                "id": 2
-            }
+            // {
+            //     roomNameCn: "雅致单间",
+            //     bedDescription: "大床",
+            //     area: "38m2",
+            //     floor: "30-31",
+            //     isExtraBed: "收费加床"
+            // },
+            // {
+            //     roomNameCn: "雅致单间",
+            //     bedDescription: "大床",
+            //     area: "38m2",
+            //     floor: "30-31",
+            //     isExtraBed: "收费加床"
+            // },
+            // {
+            //     roomNameCn: "雅致单间",
+            //     bedDescription: "大床",
+            //     area: "38m2",
+            //     floor: "30-31",
+            //     isExtraBed: "收费加床"
+            // }
         ],
         result: {}
     },
@@ -88,6 +103,10 @@ Page({
             inDate: that.data.date,
         }
         console.log(reqParams);
+        wx.showToast({
+            title: '加载中',
+            icon: 'loading'
+        });
         wx.request({
             url: "https://mini.xhxblog.cn/hotel/room/price",
             method: 'POST',
@@ -96,14 +115,35 @@ Page({
                 'Content-Type': 'application/json',
             },
             success: res => {
-                console.log(res);
+                let results = res.data.data;
+
+                for (let i = 0; i < results.length; i++) {
+                    results[i].status = false;
+                }
+
                 that.setData({
-                    results: res.data
+                    results: results
                 })
+                wx.hideToast();
+            },
+            error: res => {
+                wx.showToast({
+                    title: '获取信息失败',
+                    icon: 'error'
+                });
             }
         })
     },
 
+    showPannel: function (e) {
+        console.log(e);
+        let that = this;
+        let results = that.data.results;
+        results[e.currentTarget.dataset.item].status = !results[e.currentTarget.dataset.item].status;
+        that.setData({
+            results: results
+        })
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -127,8 +167,6 @@ Page({
         } else {
             Ds = D
         }
-        console.log(D)
-        console.log(M)
         this.setData({
             dateInTime: obj.dateTime,
             dateInTimeArray: obj.dateTimeArray,
