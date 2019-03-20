@@ -43,7 +43,16 @@ Page({
             //     isExtraBed: "收费加床"
             // }
         ],
-        result: {}
+        result: {},
+        roomInfo: {},
+        actions: [
+            {
+                name: "取消"
+            },
+            {
+                name: '我要预订',
+                color: '#19be6b'
+            }]
     },
 
     bindTimeChange: function (e) {
@@ -90,10 +99,23 @@ Page({
         });
     },
 
-    handleClose1() {
+    handleClose1(e) {
+        console.log(e)
+        let that = this;
+
+        console.log(that.data.roomInfo)
+        console.log(that.data.result)
+        return
+        wx.navigateTo({
+            url: '../../order/order',
+        })
         this.setData({
             visible1: false
         });
+    },
+
+    handleOk() {
+
     },
 
     getRoomList: function () {
@@ -139,9 +161,10 @@ Page({
         console.log(e);
         let that = this;
         let results = that.data.results;
-        results[e.currentTarget.dataset.item].status = !results[e.currentTarget.dataset.item].status;
+        results[e.currentTarget.dataset.index].status = !results[e.currentTarget.dataset.index].status;
         that.setData({
-            results: results
+            results: results,
+            roomInfo: e.currentTarget.dataset.item
         })
     },
 

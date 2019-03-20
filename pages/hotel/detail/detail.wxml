@@ -45,7 +45,7 @@
 
                     <view class="detail-room-info-right">
                         ￥116起
-                        <view bindtap="showPannel" data-item="{{index}}">
+                        <view bindtap="showPannel" data-index="{{index}}" data-item="{{item}}">
 
                             <view wx:if="{{item.status}}">
                                 <i-icon type="enter"/>
@@ -75,7 +75,7 @@
     </view>
 
 
-    <i-modal title="房间详细信息" visible="{{ visible1 }}" bind:ok="handleClose1" bind:cancel="handleClose1">
+    <i-modal title="房间详细信息" actions="{{ actions }}" visible="{{ visible1 }}" bind:ok="handleClose1" bind:cancel="handleClose1">
         <view class="room-info">
             {{result.bedInfo}}
 
