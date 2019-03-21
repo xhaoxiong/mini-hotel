@@ -75,7 +75,7 @@
     </view>
 
 
-    <i-modal title="房间详细信息" actions="{{ actions }}" visible="{{ visible1 }}" bind:ok="handleClose1" bind:cancel="handleClose1">
+    <i-modal title="房间详细信息" actions="{{ actions }}" visible="{{ visible1 }}" bind:ok="payOrder" bind:cancel="handleClose1">
         <view class="room-info">
             {{result.bedInfo}}
 

@@ -29,9 +29,10 @@ Page({
     },
 
     showDetail: function (e) {
-        let hotelId = e.currentTarget.dataset.item.hotelId;
+        let hotelItem = JSON.stringify(e.currentTarget.dataset.item);
+        console.log(hotelItem);
         wx.navigateTo({
-            url: './detail/detail?hotelId=' + hotelId,
+            url: './detail/detail?hotelItem=' + hotelItem,
         })
     },
 
@@ -104,7 +105,9 @@ Page({
         that.setData({
             hotelList: [],
             page: 0
-        })
+        });
+
+        that.getHotelList();
     }
     ,
 
@@ -136,7 +139,7 @@ Page({
      */
     onShow: function () {
         let that = this;
-        that.getHotelList();
+
     }
     ,
 

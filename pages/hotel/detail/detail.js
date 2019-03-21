@@ -1,6 +1,6 @@
 // pages/hotel/detail/detail.js
-var dateTimePicker = require('../../../utils/dateTimePicker.js');
-
+let dateTimePicker = require('../../../utils/dateTimePicker.js');
+const appinstance = getApp();
 
 Page({
 
@@ -19,7 +19,7 @@ Page({
         Inday: '',
         Outday: '',
         date: '',
-        hotelId: '',
+        hotelItem: {},
         results: [
             // {
             //     roomNameCn: "雅致单间",
@@ -45,14 +45,6 @@ Page({
         ],
         result: {},
         roomInfo: {},
-        actions: [
-            {
-                name: "取消"
-            },
-            {
-                name: '我要预订',
-                color: '#19be6b'
-            }]
     },
 
     bindTimeChange: function (e) {
@@ -91,7 +83,7 @@ Page({
     },
 
     handleOpen1(e) {
-        console.log(this.data.hotelId);
+
         this.setData({
             result: e.target.dataset.item,
             visible1: true,
@@ -100,31 +92,72 @@ Page({
     },
 
     handleClose1(e) {
-        console.log(e)
-        let that = this;
 
-        console.log(that.data.roomInfo)
-        console.log(that.data.result)
-        return
-        wx.navigateTo({
-            url: '../../order/order',
-        })
         this.setData({
             visible1: false
         });
     },
 
-    handleOk() {
+    payOrder(e) {
+        let that = this;
+        console.log(this.data.result);
+        console.log(this.data.roomInfo);
 
+
+        //此处开始预下单
+
+        //需要携带的参数
+        /**
+         * 入住和离开时间
+         * 实际付款
+         * 房型信息
+         *
+         */
+        that.preOrder()
+        this.setData({
+            visible1: false
+        });
+    },
+
+    preOrder: function () {
+        let that = this;
+        console.log(that.data.result);
+        console.log(that.data.roomInfo);
+        let orderInfo = {
+            HotelId: that.data.hotelItem.hotelId + "",
+            HotelItem: JSON.stringify(that.data.hotelItem),
+            RoomId: that.data.roomInfo.roomId + "",
+            RoomInfo: JSON.stringify(that.data.roomInfo),
+            Status: 2,
+            UserId: 34,
+        }
+
+
+        wx.request({
+            url: "https://mini.xhxblog.cn/order/create",
+            method: 'POST',
+            data: JSON.stringify(orderInfo),
+            header: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${appinstance.globalData.token}`
+            },
+            success: res => {
+                let orderInfo = JSON.stringify(res.data)
+                wx.navigateTo({
+                    url: '../../order/detail/detail?orderInfo=' + orderInfo,
+                })
+
+            }
+        })
     },
 
     getRoomList: function () {
         let that = this;
         let reqParams = {
-            hotelId: that.data.hotelId,
+            hotelId: that.data.hotelItem.hotelId + "",
             inDate: that.data.date,
         }
-        console.log(reqParams);
+
         wx.showToast({
             title: '加载中',
             icon: 'loading'
@@ -137,6 +170,7 @@ Page({
                 'Content-Type': 'application/json',
             },
             success: res => {
+                console.log(res)
                 let results = res.data.data;
 
                 for (let i = 0; i < results.length; i++) {
@@ -198,7 +232,7 @@ Page({
             Outday: obj.defaultDay,
             Inday: obj.defaultDay,
             time: time,
-            hotelId: options.hotelId,
+            hotelItem: JSON.parse(options.hotelItem),
             date: "20" + obj.dateTime[0] + "-" + Ms + "-" + Ds,
         });
         that.getRoomList()
