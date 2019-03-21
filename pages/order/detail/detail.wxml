@@ -13,12 +13,23 @@
                 <view>
                     <view class="detail-input detail-input-state">
                         <view>订单状态:</view>
-                        <view class="detail-input-cancel">已取消</view>
+                        <view wx:if="{{orderInfo.Status}}===1"></view>
+
+                        <view wx:elif="{{orderInfo.Status}}===2">
+                            <view class="detail-input-cancel">待支付</view>
+                        </view>
+                        <view wx:elif="{{orderInfo.Status}}===3">
+                            <view class="detail-input-cancel">待支付</view>
+                        </view>
+                        <view wx:elif="{{orderInfo.Status}}===4">
+                            <view class="detail-input-cancel">待支付</view>
+                        </view>
+
                     </view>
 
                     <view class="detail-input">
                         <view>实付款:</view>
-                        <view>￥255</view>
+                        <view>￥{{roomInfo.averagePrice}}</view>
                     </view>
                 </view>
 
@@ -28,8 +39,7 @@
         <view class="detail-panel">
             <i-panel title="基础用法">
                 <view class="detail-input">
-                    酒店地址-详情 可以点击
-
+                    酒店地址-详情 {{hotelItem.address}}
                 </view>
                 <view class="detail-input detail-line">
                 </view>
@@ -38,7 +48,7 @@
 
                     <view class="detail-input">
                         <view>房型信息:</view>
-                        <view>标准单人间</view>
+                        <view>{{roomInfo.bedType}}</view>
                     </view>
 
                     <view class="detail-input">

@@ -18,7 +18,8 @@ Page({
         endYear: 2050,
         Inday: '',
         Outday: '',
-        date: '',
+        InDate: '',
+        OutDate: '',
         hotelItem: {},
         results: [
             // {
@@ -58,13 +59,28 @@ Page({
 
         arr[e.detail.column] = e.detail.value;
 
-        console.log(arr);
         dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
         //console.log(arr);
+        let M = arr[1] + 1;
+        let D = arr[2] + 1;
+        let Ms = "";
+        let Ds = "";
+        if (M < 10) {
+            Ms = "0" + M
+        } else {
+            Ms = M
+        }
+        if (D < 10) {
+            Ds = "0" + D
+        } else {
+            Ds = D
+        }
+        console.log("20" + arr[0] + "-" + Ms + "-" + Ds);
         this.setData({
             dateInTimeArray: dateArr,
             dateInTime: arr,
             Inday: dateArr[2][arr[2]].substring(0, 3),
+            InDate: "20" + arr[0] + "-" + Ms + "-" + Ds,
         });
     },
     changeDateOutTimeColumn(e) {
@@ -73,10 +89,27 @@ Page({
         arr[e.detail.column] = e.detail.value;
         dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
         //console.log(arr);
+        console.log(arr)
+        let M = arr[1] + 1;
+        let D = arr[2] + 1;
+        let Ms = "";
+        let Ds = "";
+        if (M < 10) {
+            Ms = "0" + M
+        } else {
+            Ms = M
+        }
+        if (D < 10) {
+            Ds = "0" + D
+        } else {
+            Ds = D
+        }
+        console.log("20" + arr[0] + "-" + Ms + "-" + Ds);
         this.setData({
             dateOutTimeArray: dateArr,
             dateOutTime: arr,
             Outday: dateArr[2][arr[2]].substring(0, 3),
+            OutDate: "20" + arr[0] + "-" + Ms + "-" + Ds,
         });
 
 
@@ -121,8 +154,16 @@ Page({
 
     preOrder: function () {
         let that = this;
-        console.log(that.data.result);
-        console.log(that.data.roomInfo);
+        let inDateUnix = Date.parse(that.data.InDate + "")
+        let outDateUnix = Date.parse(that.data.OutDate + "")
+        console.log(inDateUnix);
+        console.log(outDateUnix);
+
+        if ((inDateUnix - outDateUnix) >= 0) {
+            console.log("入住时间不能大于离开日期")
+            return
+        }
+
         let orderInfo = {
             HotelId: that.data.hotelItem.hotelId + "",
             HotelItem: JSON.stringify(that.data.hotelItem),
@@ -130,6 +171,8 @@ Page({
             RoomInfo: JSON.stringify(that.data.roomInfo),
             Status: 2,
             UserId: 34,
+            InDate: that.data.InDate,
+            OutDate: that.data.outDate,
         }
 
 
@@ -155,7 +198,7 @@ Page({
         let that = this;
         let reqParams = {
             hotelId: that.data.hotelItem.hotelId + "",
-            inDate: that.data.date,
+            inDate: that.data.InDate,
         }
 
         wx.showToast({
@@ -233,7 +276,8 @@ Page({
             Inday: obj.defaultDay,
             time: time,
             hotelItem: JSON.parse(options.hotelItem),
-            date: "20" + obj.dateTime[0] + "-" + Ms + "-" + Ds,
+            InDate: "20" + obj.dateTime[0] + "-" + Ms + "-" + Ds,
+            OutDate: "20" + obj.dateTime[0] + "-" + Ms + "-" + Ds,
         });
         that.getRoomList()
     },
