@@ -77,6 +77,11 @@ Page({
         })
     },
 
+    handleClick() {
+        wx.navigateTo({
+            url: '../hotel/hotel'
+        })
+    },
     bindEnterCityTap: function () {
         wx.navigateTo({
             url: '../switchcity/switchcity',

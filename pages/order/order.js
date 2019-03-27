@@ -24,6 +24,7 @@ Page({
         more: true,
         payTotal: 0,
 
+
     },
 
     handleChange({detail}) {
@@ -34,10 +35,16 @@ Page({
         });
     },
 
-    detailHandler: function () {
+    detailHandler: function (e) {
+        console.log(e.currentTarget.dataset.item)
+        let item = e.currentTarget.dataset.item
+        let that = this;
+        let orderInfo = {
+            data: item
+        };
 
         wx.navigateTo({
-            url: './detail/detail'
+            url: './detail/detail?orderInfo=' + JSON.stringify(orderInfo)
         })
     },
 
@@ -179,6 +186,8 @@ Page({
                             payTotal: res.data.total,
                         })
                     }
+
+                    console.log(that.data.results)
                     wx.hideToast()
                 }
             }

@@ -17,6 +17,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        console.log(options.orderInfo)
         let that = this;
         that.setData({
             createdAt: that.formatCreatedAt(JSON.parse(options.orderInfo).data.CreatedAt),
@@ -119,7 +120,7 @@ Page({
                         wx.switchTab({
                             url: '../order'
                         })
-                    }, 1500)
+                    }, 1000)
                 }
             }
         })
