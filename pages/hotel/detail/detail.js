@@ -169,13 +169,19 @@ Page({
             HotelItem: JSON.stringify(that.data.hotelItem),
             RoomId: that.data.roomInfo.roomId + "",
             RoomInfo: JSON.stringify(that.data.roomInfo),
+            RealInfo: JSON.stringify(that.data.result),
+            RealId: that.data.result.id,
             Status: 2,
             UserId: 34,
             InDate: that.data.InDate,
-            OutDate: that.data.outDate,
+            OutDate: that.data.OutDate,
+            Amount: that.data.result.averagePrice * 100
         }
 
-
+        wx.showToast({
+            title: '加载中',
+            icon: 'loading'
+        });
         wx.request({
             url: "https://mini.xhxblog.cn/order/create",
             method: 'POST',
@@ -185,11 +191,11 @@ Page({
                 'Authorization': `Bearer ${appinstance.globalData.token}`
             },
             success: res => {
-                let orderInfo = JSON.stringify(res.data)
+                let orderInfo = JSON.stringify(res.data);
+                wx.hideToast();
                 wx.navigateTo({
                     url: '../../order/detail/detail?orderInfo=' + orderInfo,
                 })
-
             }
         })
     },
@@ -218,6 +224,7 @@ Page({
 
                 for (let i = 0; i < results.length; i++) {
                     results[i].status = false;
+                    results[i].averagePrice = results[i].ratePlanInfo[0].averagePrice
                 }
 
                 that.setData({

@@ -44,7 +44,7 @@
                     </view>
 
                     <view class="detail-room-info-right">
-                        ￥116起
+                        ￥{{item.averagePrice}}起
                         <view bindtap="showPannel" data-index="{{index}}" data-item="{{item}}">
 
                             <view wx:if="{{item.status}}">
@@ -75,7 +75,8 @@
     </view>
 
 
-    <i-modal title="房间详细信息" actions="{{ actions }}" visible="{{ visible1 }}" bind:ok="payOrder" bind:cancel="handleClose1">
+    <i-modal title="房间详细信息" actions="{{ actions }}" visible="{{ visible1 }}" bind:ok="payOrder"
+             bind:cancel="handleClose1">
         <view class="room-info">
             {{result.bedInfo}}
 
