@@ -1,34 +1,56 @@
 <!--pages/order/order.wxml-->
 <view style="position: fixed;top: 0;z-index: 1;width: 100%">
     <i-tabs current="{{ current }}" bindchange="handleChange">
-        <i-tab key="tab1" title="全部" count="3">
+        <i-tab key="tab1" title="全部" bindtap="handleAll" data-item="tab1">
         </i-tab>
-        <i-tab key="tab2" title="待付款"></i-tab>
-        <i-tab key="tab3" title="待入住" dot></i-tab>
+        <i-tab key="tab2" title="待付款" bindtap="handleNotPay" data-item="tab2" count="{{payTotal}}"></i-tab>
+        <i-tab key="tab3" title="已支付" bindtap="handlePay" data-item="tab3" ></i-tab>
     </i-tabs>
 </view>
 
 <view class="order-panel">
-    <i-card title="卡片标题" extra="待付款" extra_color="#2d8cf0" full="true"
-            thumb="https://img.hacpai.com/2019/01/image-e117a8d2.png" bindtap="detailHandler">
-        <view slot="content">
-            <view class="order-card-i">订单号:102151214316</view>
-            <view class="order-card-i">入住:2019-01-25 - 退房:2019-01-26</view>
-            <view class="order-card-i">房型:标准单人房1间</view>
-        </view>
-        <view slot="footer">
-            <view style="display: flex;justify-content: space-between">
-                <text>订单总价:￥250</text>
+    <view wx:for="{{results}}">
+        <view wx:if="{{item.Status===2}}">
 
-                <view class="order-card-bv">
-                    <button class="order-card-b" hover-class="none">取消订单</button>
-                    <button class="order-card-b card-b-pay" hover-class="none">立即支付</button>
+
+            <i-card title="卡片标题" extra="待付款" extra_color="#2d8cf0" full="true"
+                    thumb="https://img.hacpai.com/2019/01/image-e117a8d2.png" bindtap="detailHandler">
+                <view slot="content">
+                    <view class="order-card-i">订单号:{{item.OrderNumber}}</view>
+                    <view class="order-card-i">入住:{{item.InDate}} - 退房:{{item.OutDate}}</view>
+                    <view class="order-card-i">房型:{{item.RoomInfoParse.bedDescription}}</view>
                 </view>
-            </view>
-        </view>
-    </i-card>
+                <view slot="footer">
+                    <view style="display: flex;justify-content: space-between">
+                        <text>订单总价:￥{{item.Amount/100}}</text>
 
-    <i-load-more tip="没有更多订单了" loading="{{false}}"/>
+                        <view class="order-card-bv">
+                            <button class="order-card-b" hover-class="none">取消订单</button>
+                            <button class="order-card-b card-b-pay" hover-class="none">立即支付</button>
+                        </view>
+                    </view>
+                </view>
+            </i-card>
+        </view>
+
+        <view wx:elif="{{item.Status===3}}">
+            <i-card title="卡片标题" extra="已支付" extra_color="#2d8cf0" full="true"
+                    thumb="https://img.hacpai.com/2019/01/image-e117a8d2.png" bindtap="detailHandler">
+                <view slot="content">
+                    <view class="order-card-i">订单号:{{item.OrderNumber}}</view>
+                    <view class="order-card-i">入住:{{item.InDate}} - 退房:{{item.OutDate}}</view>
+                    <view class="order-card-i">房型:{{item.RoomInfoParse.bedDescription}}</view>
+                </view>
+                <view slot="footer">
+                    <view style="display: flex;justify-content: space-between">
+                        <text>订单总价:￥{{item.Amount/100}}</text>
+
+                    </view>
+                </view>
+            </i-card>
+        </view>
+    </view>
+    <i-load-more tip="{{(more?'努力加载中':'没有更多了')}}" loading="{{more}}"/>
 
 
 </view>
