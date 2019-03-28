@@ -12,6 +12,7 @@ Page({
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         location: app.globalData.defaultCity,
         county: app.globalData.defaultCounty,
+        visible1: true,
     },
     //事件处理函数
     bindViewTap: function () {
@@ -20,27 +21,27 @@ Page({
         })
     },
 
-    loginTap: function(){
-      let that=this
-      wx.login({
-        success:res=>{
-          let code=res.code
-          console.log("获取code:"+code)
-          if (code){
-            wx.request({
-              url: 'https://mini.xhxblog.cn/auth/bind',
-              method:'POST',
-              data: { code: code },
-              header: {
-             'content-type':'application/x-www-form-urlencoded'
-              },
-              success: function (res){
-                console.log(res.data);
-              }
-            })
-          }
-        }
-      })
+    loginTap: function () {
+        let that = this
+        wx.login({
+            success: res => {
+                let code = res.code
+                console.log("获取code:" + code)
+                if (code) {
+                    wx.request({
+                        url: 'https://mini.xhxblog.cn/auth/bind',
+                        method: 'POST',
+                        data: {code: code},
+                        header: {
+                            'content-type': 'application/x-www-form-urlencoded'
+                        },
+                        success: function (res) {
+                            console.log(res.data);
+                        }
+                    })
+                }
+            }
+        })
     },
     bindEnterCommonTap: function () {
         wx.switchTab({
@@ -53,6 +54,22 @@ Page({
         })
     },
     onLoad: function () {
+
+        // 查看是否授权
+        wx.getSetting({
+            success(res) {
+                if (res.authSetting['scope.userInfo']) {
+                    // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+                    wx.getUserInfo({
+                        success(res) {
+                            console.log(res.userInfo)
+                        }
+                    })
+                }
+            }
+        })
+
+
         if (app.globalData.userInfo) {
             this.setData({
                 userInfo: app.globalData.userInfo,

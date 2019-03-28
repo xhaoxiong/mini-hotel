@@ -21,7 +21,13 @@
     <navigator url="../hotel/hotel">酒店列表</navigator>
     <navigator url="../search/search">搜索页面</navigator>
     <navigator url="../hotel/detail/detail">酒店详情</navigator>
-    <view bindtap="loginTap">
-        登陆
-    </view>
+    <button
+            wx:if="{{canIUse}}"
+            open-type="getUserInfo"
+            bindgetuserinfo="bindGetUserInfo"
+    >
+        授权登录
+    </button>
+    <view wx:else>请升级微信版本</view>
+
 </view>

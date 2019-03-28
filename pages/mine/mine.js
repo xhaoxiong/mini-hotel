@@ -1,5 +1,5 @@
 // pages/mine/mine.js
-const appinstance = getApp();
+const app = getApp();
 const {$Toast} = require('../../dist/base/index');
 Page({
 
@@ -9,124 +9,129 @@ Page({
     data: {
         userinfo: null,
         isbind: false,
+        hasUserInfo: false,
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        openid: '',
+        token: ''
     },
 
     getInfo: function () {
         let that = this;
-
         wx.getUserInfo({
             success(res) {
-                appinstance.globalData.userInfo = res.userInfo;
-                wx.setStorageSync('userInfo', res.userInfo);
                 that.setData({
-                    userinfo: res.userInfo,
-                });
-                console.log(res)
-                that.createUser();
+                    userinfo: res.userInfo
+                })
+                wx.login({
+                    success: function (res) {
+                        let code = res.code;
+                        if (code) {
+                            wx.request({
+                                url: 'https://mini.xhxblog.cn/auth/openid',
+                                method: 'POST',
+                                data: {code: code},
+                                header: {
+                                    'content-type': 'application/x-www-form-urlencoded',
+                                },
+                                success: res => {
+                                    console.log(res.data)
+                                    if (res.data.code === 10000) {
+                                        that.setData({
+                                            openid: res.data.data.openid,
+                                            token: res.data.data.token,
+                                        })
+                                        that.createUser()
+                                    }
+                                }
+                            })
+                        }
+                    }
+                })
+
             }
         })
-
     },
 
 
     createUser: function () {
-
+        let that = this;
+        let userinfo = that.data.userinfo;
+        let token = that.data.token;
+        let openid = that.data.openid;
+        let sessionKey = that.data.sessionKey;
         wx.request({
             url: "https://mini.xhxblog.cn/auth/userinfo",
             method: 'POST',
             data: {
                 id: 0,
-                userinfo: appinstance.globalData.userInfo,
-                openid: appinstance.globalData.openid
+                userinfo: userinfo,
+                openid: openid
             },
             header: {
                 'content-type': 'application/json',
             },
             success: res => {
+                wx.setStorageSync('userinfo', userinfo);
+                wx.setStorageSync('token', token);
+                wx.setStorageSync('openid', openid);
+                wx.setStorageSync('sessionKey', sessionKey);
+                app.globalData.openid = openid;
+                app.globalData.token = token;
+                app.globalData.userinfo = userinfo;
+                app.globalData.sessionKey = sessionKey;
+                that.setData({
+                    hasUserInfo: true
+                });
                 $Toast({
-                    content: '完善成功',
+                    content: '获取用户信息成功',
                     type: 'success'
                 });
-                console.log(res)
-                // $Toast({
-                //     content: res.message,
-                //     type: 'error'
-                // });
             }
         })
     },
 
     mobileHandle: function () {
 
-        let userinfo = wx.getStorageSync('userInfo');
-        let that = this;
-
-        if (userinfo != '') {
-            if (!that.data.isbind) {
-                wx.navigateTo({
-                    url: '../login/login',
-                })
-            }
+        let userinfo = wx.getStorageSync('userinfo');
+        console.log(userinfo);
+        if (userinfo !== '') {
+            wx.navigateTo({
+                url: '../login/login',
+            })
         }
     },
 
-    checkBind: function () {
-        let that = this;
-        wx.request({
-            url: "https://mini.xhxblog.cn/auth/bind/check",
-            method: 'POST',
-            header: {'content-type': 'application/x-www-form-urlencoded'},
-            data: {
-                openid: appinstance.globalData.openid
-            },
-            success: res => {
-                if (res.data.status === 10000) {
-                    that.setData({
-                        isbind: res.data.isBind
-                    });
-                }
-            }
-        })
-    },
 
-    cancelBind: function () {
-        let that = this;
-
-        wx.showModal({
-            title: '提示',
-            content: '您确定要取消绑定吗？',
-            success: res => {
-                if (res.confirm) {
-                    wx.request({
-                        url: "https://mini.xhxblog.cn/auth/bind/cancel",
-                        method: 'post',
-                        data: {openid: appinstance.globalData.openid},
-                        header: {'content-type': 'application/x-www-form-urlencoded'},
-                        success: res => {
-                            if (res.data.status === 10000) {
-                                that.setData({
-                                    isbind: false
-                                })
-                            }
-                        }
-                    })
-                }
-            }
-        })
-
-
-    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
         let that = this;
-        that.checkBind();
-        if (appinstance.globalData.userInfo != '') {
+
+        let userinfo = wx.getStorageSync('userinfo');
+        if (userinfo !== '') {
             that.setData({
-                userinfo: appinstance.globalData.userInfo
+                userinfo: userinfo,
+                hasUserInfo: true,
+            })
+        } else {
+            wx.getSetting({
+                success(res) {
+                    if (res.authSetting['scope.userInfo']) {
+                        // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+                        wx.getUserInfo({
+                            success(res) {
+                                that.setData({
+                                    userinfo: res.userInfo,
+                                    hasUserInfo: true
+                                })
+                            }
+                        })
+                    }
+                }
             })
         }
+
     },
 
     /**
@@ -140,8 +145,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        let that = this;
-        that.onLoad()
     },
 
     /**

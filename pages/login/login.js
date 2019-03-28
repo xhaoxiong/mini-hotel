@@ -1,5 +1,5 @@
-  // pages/login/login.js
-const appinstance = getApp();
+// pages/login/login.js
+
 const {$Toast} = require('../../dist/base/index');
 Page({
 
@@ -16,7 +16,8 @@ Page({
         countDown: false, //默认是没有倒计时的
         getmsg: '获取验证码',
         cardArray: ["身份证", "台湾居民来往大陆通行证", "港澳居民大陆通行证", "外籍护照"],
-        cardIndex: 0
+        cardIndex: 0,
+        isbind: false
     },
     handleClick: function () {
         let mobileValue = this.data.mobileValue;
@@ -59,6 +60,9 @@ Page({
             return
         }
         let that = this;
+        let openid = wx.getStorageSync('openid');
+
+
         wx.request({
             url: 'https://mini.xhxblog.cn/auth/bind',
             method: 'POST',
@@ -67,20 +71,21 @@ Page({
                 username: nameValue,
                 cate: that.data.cardIndex,
                 card_number: cardValue,
-                openid: appinstance.globalData.openid,
-                sessionKey: appinstance.globalData.sessionKey,
+                openid: openid,
                 code: codeValue
             },
             header: {
                 'content-type': 'application/x-www-form-urlencoded',
             },
             success(res) {
-                if (res.data.status === 10000) {
-                    console.log(res);
+                if (res.data.code === 10000) {
                     wx.setStorageSync('token', res.data.token);
                     $Toast({
                         content: '绑定成功',
                         type: 'success'
+                    });
+                    that.setData({
+                        isbind: res.data.isBind
                     });
                     wx.navigateBack({
                         delta: 1
@@ -202,11 +207,34 @@ Page({
             mobileValue: ''
         })
     },
+    checkBind: function () {
+        let that = this;
+        let openid = wx.getStorageSync('openid');
+        wx.request({
+            url: "https://mini.xhxblog.cn/auth/bind/check",
+            method: 'POST',
+            header: {'content-type': 'application/x-www-form-urlencoded'},
+            data: {
+                openid: openid
+            },
+            success: res => {
+                console.log(res)
+                if (res.data.code === 10000) {
+                    that.setData({
+
+                        isbind: res.data.isBind
+                    });
+                }
+            }
+        })
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        let that = this;
+        that.checkBind()
     },
 
     /**
