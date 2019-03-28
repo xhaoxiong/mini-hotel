@@ -107,6 +107,13 @@ Page({
         })
     },
 
+    aboutHandle: function () {
+        wx.navigateTo({
+            url: '../about/about'
+        })
+
+    },
+
 
     /**
      * 生命周期函数--监听页面加载

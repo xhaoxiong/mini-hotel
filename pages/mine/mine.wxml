@@ -45,7 +45,7 @@
                         <i-icon type="brush_fill"/>
                         <text>反馈</text>
                     </i-cell>
-                    <i-cell is-link bindtap="mobileHandle">
+                    <i-cell is-link bindtap="aboutHandle">
                         <i-icon type="guanyu" custom/>
                         <text>关于</text>
                     </i-cell>

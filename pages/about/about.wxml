@@ -1,0 +1,23 @@
+<!--pages/about/about.wxml-->
+<view>
+    <view class="swiper-container">
+        <swiper class="swiper-item" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}"
+                duration="{{duration}}">
+            <block wx:for="{{imgUrls}}">
+                <swiper-item>
+                    <image src="{{item}}" class="slide-image" style="width: 100%" width="375" height="150"/>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+
+    <view class="about-article">
+        该小程序主要功能为国内酒店预订系统简洁方便,
+        请联系QQ2689812428
+    </view>
+
+    <view class="about-footer">
+        <text>Copyright 2018-2019</text>
+        <text>长沙学院·计算机工程与应用数学学院</text>
+    </view>
+</view>

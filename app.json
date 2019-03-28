@@ -11,7 +11,9 @@
     "pages/order/detail/detail",
     "pages/hotel/hotel",
     "pages/search/search",
-    "pages/hotel/detail/detail"
+    "pages/hotel/detail/detail",
+    "pages/feedback/feedback",
+    "pages/about/about"
   ],
   "window": {
     "backgroundTextStyle": "light",
