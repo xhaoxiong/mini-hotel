@@ -92,12 +92,12 @@
 
     </view>
     <i-modal title="" actions="{{ actions }}" visible="{{ visible1 }}" bind:ok="payOrder"
-             bind:cancel="cancelOrder">
+             bind:cancel="handleClose1">
         您确定要支付吗?
     </i-modal>
 
     <i-modal title="" actions="{{ actions }}" visible="{{ visible2 }}" bind:ok="cancelOrder"
              bind:cancel="handleClose2">
-        您确定要支付吗?
+        您确定要取消订单吗?
     </i-modal>
 </view>

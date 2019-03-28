@@ -23,9 +23,118 @@ Page({
         results: [],
         more: true,
         payTotal: 0,
-
-
+        visible1: false,
+        visible2: false,
+        item: null,
     },
+
+    handleOpen1(e) {
+
+        this.setData({
+            visible1: true,
+            item: e.currentTarget.dataset.item
+        });
+    },
+
+    handleOpen2(e) {
+        this.setData({
+            visible2: true,
+            item: e.currentTarget.dataset.item
+        });
+    },
+
+    payOrder(e) {
+        let that = this;
+
+        that.setData({
+            visible2: false,
+        })
+        let tab = that.data.current_scroll
+        wx.showToast({
+            title: '支付中',
+            icon: 'loading',
+            mask: true
+        });
+        wx.request({
+            url: "https://mini.xhxblog.cn/order/update",
+            method: 'POST',
+            data: {
+                ID: that.data.item.ID,
+                Status: 3
+            },
+            header: {
+                'Content-Type': 'application/json',
+            },
+            success: res => {
+                if (res.data.code === 10000) {
+                    wx.showToast({
+                        title: '支付成功',
+                        icon: 'success',
+                        mask: true
+                    })
+                    that.onShow()
+                    that.setData({
+                        current_scroll: tab,
+                        current: tab
+                    })
+
+                }
+            }
+        })
+    },
+
+    cancelOrder() {
+        let that = this;
+        that.setData({
+            visible1: false,
+        })
+        wx.showToast({
+            title: '取消中',
+            icon: 'loading',
+            mask: true
+        });
+        let tab = that.data.current_scroll
+        wx.request({
+            url: "https://mini.xhxblog.cn/order/update",
+            method: 'POST',
+            data: {
+                ID: that.data.item.ID,
+                Status: 4
+            },
+            header: {
+                'Content-Type': 'application/json',
+            },
+            success: res => {
+                if (res.data.code === 10000) {
+                    wx.showToast({
+                        title: '取消成功',
+                        icon: 'success',
+                        mask: true
+                    })
+                    that.onShow()
+                    that.setData({
+                        current_scroll: tab,
+                        current: tab
+                    })
+                }
+            }
+        })
+    },
+
+
+    handleClose1() {
+        let that = this;
+        that.setData({
+            visible1: false,
+        })
+    },
+    handleClose2() {
+        let that = this;
+        that.setData({
+            visible2: false,
+        })
+    },
+
 
     handleChange({detail}) {
 
@@ -36,9 +145,7 @@ Page({
     },
 
     detailHandler: function (e) {
-        console.log(e.currentTarget.dataset.item)
         let item = e.currentTarget.dataset.item
-        let that = this;
         let orderInfo = {
             data: item
         };

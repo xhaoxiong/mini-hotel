@@ -23,8 +23,14 @@
                         <text>订单总价:￥{{item.Amount/100}}</text>
 
                         <view class="order-card-bv">
-                            <button class="order-card-b" hover-class="none">取消订单</button>
-                            <button class="order-card-b card-b-pay" hover-class="none">立即支付</button>
+                            <button class="order-card-b" bindtap="handleOpen1" data-item="{{item}}"
+                                    data-data="current_scroll" hover-class="none">
+                                取消订单
+                            </button>
+                            <button class="order-card-b card-b-pay" bindtap="handleOpen2" data-item="{{item}}"
+                                    data-data="current_scroll"
+                                    hover-class="none">立即支付
+                            </button>
                         </view>
                     </view>
                 </view>
@@ -47,8 +53,35 @@
                 </view>
             </i-card>
         </view>
+
+        <view wx:elif="{{item.Status===4}}">
+            <i-card title="卡片标题" extra="已取消" extra_color="#ca0c16" full="true"
+                    thumb="https://img.hacpai.com/2019/01/image-e117a8d2.png">
+                <view slot="content" data-item="{{item}}" bindtap="detailHandler">
+                    <view class="order-card-i">订单号:{{item.OrderNumber}}</view>
+                    <view class="order-card-i">入住:{{item.InDate}} - 退房:{{item.OutDate}}</view>
+                    <view class="order-card-i">房型:{{item.RoomInfoParse.bedDescription}}</view>
+                </view>
+                <view slot="footer">
+                    <view style="display: flex;justify-content: space-between">
+                        <text>订单总价:￥{{item.Amount/100}}</text>
+
+                    </view>
+                </view>
+            </i-card>
+        </view>
+
     </view>
     <i-load-more tip="{{(more?'努力加载中':'没有更多了')}}" loading="{{more}}"/>
 
+    <i-modal title="" actions="{{ actions }}" visible="{{ visible1 }}" bind:ok="cancelOrder"
+             bind:cancel="handleClose1">
+        您确定要取消订单吗?
+    </i-modal>
+
+    <i-modal title="" actions="{{ actions }}" visible="{{ visible2 }}" bind:ok="payOrder"
+             bind:cancel="handleClose2">
+        您确定要支付吗?
+    </i-modal>
 
 </view>

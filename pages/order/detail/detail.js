@@ -83,6 +83,11 @@ Page({
             }
         })
     },
+    handleClose1(e) {
+        this.setData({
+            visible1: false
+        });
+    },
     handleClose2(e) {
         this.setData({
             visible2: false
