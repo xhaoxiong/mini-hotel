@@ -1,4 +1,5 @@
 // pages/hotel/hotel.js
+const app = getApp()
 Page({
 
     /**
@@ -56,6 +57,7 @@ Page({
             data: JSON.stringify(that.data.searchParams),
             header: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${app.globalData.token}`
             },
             success: res => {
 

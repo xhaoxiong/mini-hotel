@@ -1,4 +1,5 @@
 // pages/order/detail/detail.js
+const app = getApp();
 Page({
 
     /**
@@ -65,6 +66,7 @@ Page({
             },
             header: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${app.globalData.token}`
             },
             success: res => {
                 if (res.data.code === 10000) {
@@ -112,6 +114,7 @@ Page({
             },
             header: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${app.globalData.token}`
             },
             success: res => {
                 if (res.data.code === 10000) {

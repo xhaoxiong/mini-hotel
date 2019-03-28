@@ -1,4 +1,5 @@
 // pages/order/order.js
+const app = getApp();
 Page({
 
     /**
@@ -14,7 +15,7 @@ Page({
             status: 0,
             per: 10,
             total: 0,
-            user_id: 34,
+            user_id: app.globalData.userinfo.ID,
             order_number: '',
             search: '',
             data: {},
@@ -49,7 +50,7 @@ Page({
         that.setData({
             visible2: false,
         })
-        let tab = that.data.current_scroll
+        let tab = that.data.current_scroll;
         wx.showToast({
             title: '支付中',
             icon: 'loading',
@@ -64,6 +65,7 @@ Page({
             },
             header: {
                 'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + app.globalData.token
             },
             success: res => {
                 if (res.data.code === 10000) {
@@ -77,7 +79,6 @@ Page({
                         current_scroll: tab,
                         current: tab
                     })
-
                 }
             }
         })
@@ -103,6 +104,7 @@ Page({
             },
             header: {
                 'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + app.globalData.token
             },
             success: res => {
                 if (res.data.code === 10000) {
@@ -111,11 +113,12 @@ Page({
                         icon: 'success',
                         mask: true
                     })
-                    that.onShow()
+
                     that.setData({
                         current_scroll: tab,
                         current: tab
                     })
+                    that.onShow()
                 }
             }
         })
@@ -204,12 +207,16 @@ Page({
 
     getNotPayCount() {
         let that = this;
+        console.log(app.globalData.userinfo);
         wx.request({
             url: "https://mini.xhxblog.cn/order/notpay/count",
             method: "POST",
-            header: {'content-type': 'application/x-www-form-urlencoded'},
+            header: {
+                'content-type': 'application/x-www-form-urlencoded',
+                'Authorization': `Bearer ${app.globalData.token}`
+            },
             data: {
-                user_id: 34
+                user_id: app.globalData.userinfo.ID
             },
             success: res => {
                 console.log(res)
@@ -261,12 +268,13 @@ Page({
             data: JSON.stringify(pageResult),
             header: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${app.globalData.token}`
             },
             success: res => {
                 if (res.data.code === 10000) {
                     let tmp = res.data.data;
                     console.log(that.data.results)
-                    if (tmp.length === 0) {
+                    if (tmp.length === 0 || that.data.results.length < that.data.pageResult.per) {
                         that.setData({
                             more: false
                         })
@@ -325,6 +333,7 @@ Page({
      */
     onShow: function () {
         let that = this;
+        that.getNotPayCount()
         if (that.data.current_scroll === 'tab1') {
             that.getAll()
         } else if (that.data.current_scroll === 'tab2') {
@@ -332,7 +341,6 @@ Page({
         } else {
             that.getPay()
         }
-        that.getNotPayCount()
     },
 
     /**

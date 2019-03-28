@@ -12,13 +12,13 @@
                 <view wx:if="{{userinfo}}">
                     <view class="mine-top-item-login">
                         <view class="mine-avatar">
-                            <i-avatar src="{{userinfo.avatarUrl}}" size="default"></i-avatar>
+                            <i-avatar src="{{userinfo.Avatar}}" size="default"></i-avatar>
                         </view>
 
                         <view class="mine-top-userinfo">
                             <!--昵称-->
                             <view class="mine-nickname">
-                                <text>{{userinfo.nickName}}</text>
+                                <text>{{userinfo.NickName}}</text>
                             </view>
                             <!--微信号-->
                         </view>

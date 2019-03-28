@@ -21,14 +21,34 @@ App({
             url: "https://mini.xhxblog.cn/auth/generate/token",
             method: 'post',
             data: {'openid': openid},
-            header: {
-                'content-type': 'application/x-www-form-urlencoded',
-            },
+
             success: res => {
                 if (res.data.code === 10000) {
                     that.globalData.token = res.data.data.token
                     console.log(res)
                     wx.setStorageSync('token', res.data.data.token);
+                    that.exchangeUserInfo(openid)
+                }
+            }
+        })
+    },
+
+    exchangeUserInfo(openid) {
+        let that = this;
+        wx.request({
+            url: "https://mini.xhxblog.cn/auth/user",
+            method: 'post',
+            data: {openid: openid},
+            header: {
+                'content-type': 'application/x-www-form-urlencoded',
+                'Authorization': `Bearer ${that.globalData.token}`
+            },
+            success: res => {
+                if (res.data.code === 10000) {
+                    wx.setStorageSync('userinfo', res.data.data);
+                    that.setData({
+                        userinfo: res.data.data,
+                    })
                 }
             }
         })

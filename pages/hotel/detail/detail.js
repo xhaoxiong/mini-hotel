@@ -1,6 +1,6 @@
 // pages/hotel/detail/detail.js
 let dateTimePicker = require('../../../utils/dateTimePicker.js');
-const appinstance = getApp();
+const app = getApp();
 
 Page({
 
@@ -172,7 +172,7 @@ Page({
             RealInfo: JSON.stringify(that.data.result),
             RealId: that.data.result.id,
             Status: 2,
-            UserId: 34,
+            UserId: app.globalData.userinfo.ID,
             InDate: that.data.InDate,
             OutDate: that.data.OutDate,
             Amount: that.data.result.averagePrice * 100
@@ -188,7 +188,7 @@ Page({
             data: JSON.stringify(orderInfo),
             header: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${appinstance.globalData.token}`
+                'Authorization': `Bearer ${app.globalData.token}`
             },
             success: res => {
                 let orderInfo = JSON.stringify(res.data);
@@ -217,6 +217,7 @@ Page({
             data: JSON.stringify(reqParams),
             header: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${app.globalData.token}`
             },
             success: res => {
                 console.log(res)

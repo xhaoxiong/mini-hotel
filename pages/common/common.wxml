@@ -66,16 +66,16 @@
                 </view>
                 <view class="index-input-line"></view>
                 <!-- 用户搜索 -->
-                <view class="index-input">
-                    <view class="index-input-title-prev">
-                        <i-icon type="search"/>
-                    </view>
-                    <input class="index-input-item" disabled='disabled' placeholder="关键字/位置/品牌/酒店名"/>
-                    <view class="index-icon">
-                        <i-icon type="enter"/>
-                    </view>
-                </view>
-                <view class="index-input-line"></view>
+                <!--<view class="index-input">-->
+                    <!--<view class="index-input-title-prev">-->
+                        <!--<i-icon type="search"/>-->
+                    <!--</view>-->
+                    <!--<input class="index-input-item" disabled='disabled' placeholder="关键字/位置/品牌/酒店名"/>-->
+                    <!--<view class="index-icon">-->
+                        <!--<i-icon type="enter"/>-->
+                    <!--</view>-->
+                <!--</view>-->
+                <!--<view class="index-input-line"></view>-->
                 <view class="index-button">
                     <i-button bind:click="handleClick" type="primary" size="small">订酒店</i-button>
                 </view>

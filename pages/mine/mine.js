@@ -71,16 +71,17 @@ Page({
                 'content-type': 'application/json',
             },
             success: res => {
-                wx.setStorageSync('userinfo', userinfo);
+                wx.setStorageSync('userinfo', res.data.data)
                 wx.setStorageSync('token', token);
                 wx.setStorageSync('openid', openid);
                 wx.setStorageSync('sessionKey', sessionKey);
                 app.globalData.openid = openid;
                 app.globalData.token = token;
-                app.globalData.userinfo = userinfo;
+                app.globalData.userinfo = res.data.data
                 app.globalData.sessionKey = sessionKey;
                 that.setData({
-                    hasUserInfo: true
+                    hasUserInfo: true,
+                    userinfo: res.data.data
                 });
                 $Toast({
                     content: '获取用户信息成功',

@@ -138,6 +138,7 @@ Page({
             Inday: obj.defaultDay,
             time: time
         });
+        this.getLocation();
     },
 
     /**
