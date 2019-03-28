@@ -6,7 +6,7 @@
         </button>
     </view>
 
-    <view wx:else>
+    <view wx:else >
         <i-pannel hide-top="true" title="上部分">
             <view class="mine-top">
                 <view wx:if="{{userinfo}}">
@@ -31,29 +31,23 @@
             <!--选项列表-->
             <view class="mine-list">
                 <i-cell-group>
-                    <i-cell icon="accessory" is-link bindtap="mobileHandle">
-                        <i-icon type="accessory"/>
-                        <text>用户信息绑定</text>
+
+                    <i-cell is-link bindtap="mobileHandle">
+                        <i-icon type="mobilephone_fill"/>
+                        <text>绑定手机号</text>
                     </i-cell>
-                    <i-cell icon="accessory" is-link>
-                        <i-icon type="accessory"/>
-                        <text>测试测试链接</text>
+                </i-cell-group>
+            </view>
+            <view class="mine-list" style="margin-top: 10px">
+                <i-cell-group>
+
+                    <i-cell is-link bindtap="feedbackHandle">
+                        <i-icon type="brush_fill"/>
+                        <text>反馈</text>
                     </i-cell>
-                    <i-cell icon="accessory" is-link>
-                        <i-icon type="accessory"/>
-                        <text>测试测试链接</text>
-                    </i-cell>
-                    <i-cell icon="accessory" is-link>
-                        <i-icon type="accessory"/>
-                        <text>测试测试链接</text>
-                    </i-cell>
-                    <i-cell icon="accessory" is-link>
-                        <i-icon type="accessory"/>
-                        <text>测试测试链接</text>
-                    </i-cell>
-                    <i-cell icon="accessory" is-link>
-                        <i-icon type="accessory"/>
-                        <text>测试测试链接</text>
+                    <i-cell is-link bindtap="mobileHandle">
+                        <i-icon type="guanyu" custom/>
+                        <text>关于</text>
                     </i-cell>
                 </i-cell-group>
             </view>
@@ -61,7 +55,8 @@
 
         <i-toast id="toast"/>
         <view class="mine-footer">
-            <text>隐私政策</text>
+            <text>Copyright 2018-2019</text>
+            <text>长沙学院·计算机工程与应用数学学院</text>
         </view>
     </view>
 </view>

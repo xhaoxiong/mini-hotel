@@ -1,0 +1,21 @@
+/* pages/feedback/feedback.wxss */
+page{
+    background-color: #dddddd;
+}
+
+
+.feedback-container{
+    padding: 20px;
+}
+
+.feedback-footer {
+    height: 100%;
+    text-align: center;
+    margin-top: 180px;
+    font-size: 12px;
+    letter-spacing: normal;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 38px;
+}

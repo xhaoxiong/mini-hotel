@@ -1,0 +1,19 @@
+<!--pages/feedback/feedback.wxml-->
+<view class="feedback-container">
+    <view class="feedback-top">
+
+        <view class="section">
+            <form bindsubmit="bindFormSubmit">
+                <textarea placeholder="请填写反馈内容" name="textarea"
+                          style="width: 100%;font-size: 14px;background-color: #ffffff"/>
+                <button style="margin-top: 10px" form-type="submit">提交</button>
+            </form>
+        </view>
+    </view>
+
+
+    <view class="feedback-footer">
+        <text>Copyright 2018-2019</text>
+        <text>长沙学院·计算机工程与应用数学学院</text>
+    </view>
+</view>

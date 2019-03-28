@@ -101,6 +101,11 @@ Page({
             })
         }
     },
+    feedbackHandle: function () {
+        wx.navigateTo({
+            url: '../feedback/feedback',
+        })
+    },
 
 
     /**
