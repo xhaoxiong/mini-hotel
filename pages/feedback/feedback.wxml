@@ -5,8 +5,8 @@
         <view class="section">
             <form bindsubmit="bindFormSubmit">
                 <textarea placeholder="请填写反馈内容" name="textarea"
-                          style="width: 100%;font-size: 14px;background-color: #ffffff"/>
-                <button style="margin-top: 10px" form-type="submit">提交</button>
+                          style="width: 100%;font-size: 14px;background-color: #ffffff" value='{{content}}' bindinput='bindTextAreaBlur'/>
+                <button style="margin-top: 10px" form-type="submit" bindtap="feedBackSubmit">提交</button>
             </form>
         </view>
     </view>

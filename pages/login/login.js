@@ -1,6 +1,7 @@
 // pages/login/login.js
 
 const {$Toast} = require('../../dist/base/index');
+const app = getApp();
 Page({
 
     /**
@@ -80,10 +81,13 @@ Page({
             success(res) {
                 if (res.data.code === 10000) {
                     wx.setStorageSync('token', res.data.token);
+                    wx.setStorageSync('userinfo', res.data.userinfo);
+                    app.globalData.userinfo = res.data.userinfo
                     $Toast({
                         content: '绑定成功',
                         type: 'success'
                     });
+
                     that.setData({
                         isbind: res.data.isBind
                     });

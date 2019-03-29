@@ -83,5 +83,5 @@
              bind:cancel="handleClose2">
         您确定要支付吗?
     </i-modal>
-
+    <i-toast id="toast"/>
 </view>

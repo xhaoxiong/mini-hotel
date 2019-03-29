@@ -1,5 +1,6 @@
 // pages/hotel/detail/detail.js
 let dateTimePicker = require('../../../utils/dateTimePicker.js');
+const {$Toast} = require('../../../dist/base/index');
 const app = getApp();
 
 Page({
@@ -75,7 +76,6 @@ Page({
         } else {
             Ds = D
         }
-        console.log("20" + arr[0] + "-" + Ms + "-" + Ds);
         this.setData({
             dateInTimeArray: dateArr,
             dateInTime: arr,
@@ -89,7 +89,6 @@ Page({
         arr[e.detail.column] = e.detail.value;
         dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
         //console.log(arr);
-        console.log(arr)
         let M = arr[1] + 1;
         let D = arr[2] + 1;
         let Ms = "";
@@ -133,10 +132,6 @@ Page({
 
     payOrder(e) {
         let that = this;
-        console.log(this.data.result);
-        console.log(this.data.roomInfo);
-
-
         //此处开始预下单
 
         //需要携带的参数
@@ -156,11 +151,20 @@ Page({
         let that = this;
         let inDateUnix = Date.parse(that.data.InDate + "")
         let outDateUnix = Date.parse(that.data.OutDate + "")
-        console.log(inDateUnix);
-        console.log(outDateUnix);
+
 
         if ((inDateUnix - outDateUnix) >= 0) {
-            console.log("入住时间不能大于离开日期")
+            $Toast({
+                content: '入住日期不能大于或等于离开日期',
+                type: 'error'
+            });
+            return
+        }
+        if (app.globalData.userinfo.IsBind !== 1) {
+            $Toast({
+                content: '该用户未绑定,不能下单',
+                type: 'error'
+            });
             return
         }
 
@@ -191,11 +195,14 @@ Page({
                 'Authorization': `Bearer ${app.globalData.token}`
             },
             success: res => {
-                let orderInfo = JSON.stringify(res.data);
-                wx.hideToast();
-                wx.navigateTo({
-                    url: '../../order/detail/detail?orderInfo=' + orderInfo,
-                })
+                console.log("/order/create:", res)
+                if (res.data.code === 10000) {
+                    let orderInfo = JSON.stringify(res.data);
+                    wx.hideToast();
+                    wx.navigateTo({
+                        url: '../../order/detail/detail?orderInfo=' + orderInfo,
+                    })
+                }
             }
         })
     },
@@ -220,18 +227,21 @@ Page({
                 'Authorization': `Bearer ${app.globalData.token}`
             },
             success: res => {
-                console.log(res)
-                let results = res.data.data;
+                console.log("/hotel/room/price:", res)
+                if (res.data.code === 10000) {
+                    let results = res.data.data;
 
-                for (let i = 0; i < results.length; i++) {
-                    results[i].status = false;
-                    results[i].averagePrice = results[i].ratePlanInfo[0].averagePrice
+                    for (let i = 0; i < results.length; i++) {
+                        results[i].status = false;
+                        results[i].averagePrice = results[i].ratePlanInfo[0].averagePrice
+                    }
+
+                    that.setData({
+                        results: results
+                    })
+                    wx.hideToast();
                 }
 
-                that.setData({
-                    results: results
-                })
-                wx.hideToast();
             },
             error: res => {
                 wx.showToast({
@@ -243,7 +253,6 @@ Page({
     },
 
     showPannel: function (e) {
-        console.log(e);
         let that = this;
         let results = that.data.results;
         results[e.currentTarget.dataset.index].status = !results[e.currentTarget.dataset.index].status;

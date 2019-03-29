@@ -87,4 +87,5 @@
             {{result.ratePrice}}
         </view>
     </i-modal>
+    <i-toast id="toast"/>
 </view>

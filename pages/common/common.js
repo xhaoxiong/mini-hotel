@@ -38,6 +38,12 @@ Page({
         city: "定位中",
         currentCityCode: '',
     },
+
+    searchHandle: function () {
+        wx.navigateTo({
+            url: '../search/search'
+        })
+    },
     getLocation: function () {
         console.log("正在定位城市");
         this.setData({county: ''});

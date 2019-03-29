@@ -25,7 +25,6 @@ App({
             success: res => {
                 if (res.data.code === 10000) {
                     that.globalData.token = res.data.data.token
-                    console.log(res)
                     wx.setStorageSync('token', res.data.data.token);
                     that.exchangeUserInfo(openid)
                 }

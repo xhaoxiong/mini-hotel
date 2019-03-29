@@ -1,5 +1,6 @@
 // pages/order/detail/detail.js
 const app = getApp();
+const {$Toast} = require('../../../dist/base/index');
 Page({
 
     /**
@@ -18,6 +19,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        if (app.globalData.userinfo.IsBind !== 1) {
+            $Toast({
+                content: '该用户未绑定不能查看订单',
+                type: 'error'
+            });
+            return
+        }
         console.log(options.orderInfo)
         let that = this;
         that.setData({

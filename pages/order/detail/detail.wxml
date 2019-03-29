@@ -100,4 +100,5 @@
              bind:cancel="handleClose2">
         您确定要取消订单吗?
     </i-modal>
+    <i-toast id="toast"/>
 </view>
