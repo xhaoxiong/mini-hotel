@@ -65,7 +65,7 @@
                     </view>
                 </view>
                 <view class="index-input-line"></view>
-                 <!--用户搜索 -->
+                <!--用户搜索 -->
                 <view class="index-input" bindtap="searchHandle">
                     <view class="index-input-title-prev">
                         <i-icon type="search"/>
@@ -87,5 +87,5 @@
         <text>Wehotel 全球超一亿会员的选择</text>
         <view class="footer-line"></view>
     </view>
-
+    <i-toast id="toast"/>
 </view>

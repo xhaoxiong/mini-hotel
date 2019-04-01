@@ -1,5 +1,6 @@
 // pages/common/common.js
 var dateTimePicker = require('../../utils/dateTimePicker.js');
+const {$Toast} = require('../../dist/base/index');
 import utils from '../../utils/utils'
 
 const appinstance = getApp();
@@ -84,9 +85,31 @@ Page({
     },
 
     handleClick() {
-        wx.navigateTo({
-            url: '../hotel/hotel'
+
+        //查询以一下该城市是否支持
+        wx.request({
+            url: "https://mini.xhxblog.cn/hotel/city/check",
+            method: "post",
+            data: {city: this.data.location},
+            header: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            success: res => {
+                console.log(res)
+                if (res.data.code === 10000) {
+                    wx.navigateTo({
+                        url: '../hotel/hotel'
+                    })
+                } else {
+                    $Toast({
+                        content: '该城市暂时没有酒店信息',
+                        type: 'error'
+                    });
+                }
+            }
         })
+
+
     },
     bindEnterCityTap: function () {
         wx.navigateTo({
