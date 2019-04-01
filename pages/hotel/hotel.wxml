@@ -6,11 +6,11 @@
         </view>
 
         <view class="select-item" bindtap="distanceBind">
-            距离优先
+            综合排序
             <i-icon type="select" custom/>
         </view>
         <view class="select-item" bindtap="areaStateBind">
-            选择地区
+            选择地域
             <i-icon type="select" custom/>
         </view>
         <view class="select-item" bindtap="selectStateBind">
@@ -23,19 +23,31 @@
     <view class="pannel" id="distance-pannel" style="{{(distanceState)?'display: block;':'display: none;'}}">
         <view class="pannel-item">
             <view class="item-word">
-                距离
+                综合排序
             </view>
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
         </view>
         <view class="pannel-item">
             <view class="item-word">
-                距离
+                人气最高
             </view>
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
         </view>
         <view class="pannel-item">
             <view class="item-word">
-                距离
+                距离优先
+            </view>
+            <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
+        </view>
+        <view class="pannel-item">
+            <view class="item-word">
+                价格最高
+            </view>
+            <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
+        </view>
+        <view class="pannel-item">
+            <view class="item-word">
+                价格最低
             </view>
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
         </view>
@@ -44,43 +56,33 @@
     <view class="pannel" id="area-pannel" style="{{(areaState)?'display: block;':'display: none;'}}">
         <view class="pannel-item">
             <view class="item-word">
-                地区
+
+                <view>
+                    <i-icon type="coordinates"/>
+                    当前城市:{{cityName}}
+                </view>
+
+                <view bindtap="exchangeCity">
+                    切换
+                </view>
             </view>
+
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
+            <i-button bind:click="getHotelList" type="primary" size="small">获取全部</i-button>
         </view>
-        <view class="pannel-item">
-            <view class="item-word">
-                地区
-            </view>
-            <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
-        </view>
-        <view class="pannel-item">
-            <view class="item-word">
-                地区
-            </view>
-            <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
-        </view>
+
 
     </view>
 
     <view class="pannel" id="select-pannel" style="{{(selectState)?'display: block;':'display: none;'}}">
         <view class="pannel-item">
             <view class="item-word">
-                筛选
+                <view>价格区间</view>
+                <input type="number" placeholder="最小价格" style="width: 75px" bindinput="minPriceBind"/>-
+                <input type="number" placeholder="最大价格" style="width: 75px;" bindinput="maxPriceBind"/>
             </view>
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
-        </view>
-        <view class="pannel-item">
-            <view class="item-word">
-                筛选
-            </view>
-            <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
-        </view>
-        <view class="pannel-item">
-            <view class="item-word">
-                筛选
-            </view>
-            <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
+            <i-button bind:click="getHotelList" type="primary" size="small">筛选</i-button>
         </view>
     </view>
 

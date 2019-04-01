@@ -79,4 +79,6 @@ page {
 
 .item-word {
     padding: 6px;
+    display: flex;
+    justify-content: space-between;
 }

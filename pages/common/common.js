@@ -61,7 +61,6 @@ Page({
                             currentCityCode: adcode,
                             county: district
                         })
-                        console.log(city)
                         appinstance.globalData.defaultCity = city
                     }
                 })
@@ -97,6 +96,7 @@ Page({
             success: res => {
                 console.log(res)
                 if (res.data.code === 10000) {
+                    appinstance.globalData.realCity = res.data.data.realName;
                     wx.navigateTo({
                         url: '../hotel/hotel'
                     })

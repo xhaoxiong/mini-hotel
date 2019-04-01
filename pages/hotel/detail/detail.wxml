@@ -95,13 +95,6 @@
                 折扣价格: ￥{{result.ratePrice}}
             </view>
 
-
-
-
-
-
-
-
         </view>
     </i-modal>
     <i-toast id="toast"/>

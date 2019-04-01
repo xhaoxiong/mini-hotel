@@ -61,6 +61,7 @@ App({
         defaultDomain: 'https://mini.xhxblog.cn',
         openid: '',
         token: '',
-        sessionKey: ''
+        sessionKey: '',
+        realCity: ''
     }
 })

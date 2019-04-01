@@ -84,7 +84,7 @@
     </view>
     <view class="index-footer">
         <view class="footer-line"></view>
-        <text>Wehotel 全球超一亿会员的选择</text>
+        <text>ccsu酒店预订系统 全球超一亿会员的选择</text>
         <view class="footer-line"></view>
     </view>
     <i-toast id="toast"/>

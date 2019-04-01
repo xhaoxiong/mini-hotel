@@ -13,7 +13,7 @@ Page({
         searchParams: {
             'keywords': '',
             'page': '0',
-            'cityName': '长沙',
+            'cityName': '',
             'iDate': '',
             'outDate': '',
             'sortCode': '',
@@ -25,9 +25,32 @@ Page({
             'facility': '',
             'hotellablels': ''
         },
+        minPrice: '',
+        maxPrice: '',
         hotelList: [],
         page: 0,
         showLoading: false,
+        cityName: '',
+    },
+
+    minPriceBind: function (e) {
+        if (e.detail != null) {
+            this.setData({
+                minPrice: e.detail.value
+            })
+        }
+    },
+    maxPriceBind: function (e) {
+        if (e.detail != null) {
+            this.setData({
+                maxPrice: e.detail.value
+            })
+        }
+    },
+    exchangeCity: function () {
+        wx.navigateTo({
+            url: '../switchcity/switchcity',
+        })
     },
 
     showDetail: function (e) {
@@ -58,6 +81,11 @@ Page({
             console.log(that.data.searchParams.page)
             return
         }
+
+        let params = that.data.searchParams;
+        params.cityName = app.globalData.realCity;
+        params.minPrice = that.data.minPrice;
+        params.maxPrice = that.data.maxPrice;
         wx.showToast({
             title: '加载中',
             icon: 'loading'
@@ -65,7 +93,7 @@ Page({
         wx.request({
             url: "https://mini.xhxblog.cn/hotel/search",
             method: 'POST',
-            data: JSON.stringify(that.data.searchParams),
+            data: JSON.stringify(params),
             header: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${app.globalData.token}`
@@ -124,9 +152,10 @@ Page({
         let that = this;
         that.setData({
             hotelList: [],
-            page: 0
-        });
+            page: 0,
 
+
+        });
         that.getHotelList();
     }
     ,
@@ -159,7 +188,9 @@ Page({
      */
     onShow: function () {
         let that = this;
-
+        that.setData({
+            cityName: app.globalData.defaultCity,
+        })
     }
     ,
 
