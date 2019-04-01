@@ -1,9 +1,6 @@
 <view class="hotel-container">
     <view class="hotel-list-top">
-        <view class="select-item">
-            时间
-            <i-icon type="select" custom/>
-        </view>
+
 
         <view class="select-item" bindtap="distanceBind">
             综合排序
@@ -22,31 +19,31 @@
 
     <view class="pannel" id="distance-pannel" style="{{(distanceState)?'display: block;':'display: none;'}}">
         <view class="pannel-item">
-            <view class="item-word">
+            <view class="item-word" bindtap="getHotelList">
                 综合排序
             </view>
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
         </view>
-        <view class="pannel-item">
-            <view class="item-word">
+        <view class="pannel-item" >
+            <view class="item-word" bindtap="getHotelList">
                 人气最高
             </view>
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
         </view>
         <view class="pannel-item">
-            <view class="item-word">
+            <view class="item-word" bindtap="getHotelList">
                 距离优先
             </view>
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
         </view>
         <view class="pannel-item">
-            <view class="item-word">
+            <view class="item-word" bindtap="getHotelList">
                 价格最高
             </view>
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
         </view>
         <view class="pannel-item">
-            <view class="item-word">
+            <view class="item-word" bindtap="getHotelList">
                 价格最低
             </view>
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>

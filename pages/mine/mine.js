@@ -71,6 +71,7 @@ Page({
                 'content-type': 'application/json',
             },
             success: res => {
+                console.log(res);
                 wx.setStorageSync('userinfo', res.data.data)
                 wx.setStorageSync('token', token);
                 wx.setStorageSync('openid', openid);
@@ -79,6 +80,8 @@ Page({
                 app.globalData.token = token;
                 app.globalData.userinfo = res.data.data
                 app.globalData.sessionKey = sessionKey;
+                console.log(app.globalData.userinfo)
+
                 that.setData({
                     hasUserInfo: true,
                     userinfo: res.data.data

@@ -154,6 +154,14 @@ Page({
             data: item
         };
 
+        if (app.globalData.userinfo.IsBind !== 1) {
+            $Toast({
+                content: '该用户未绑定不能查看订单',
+                type: 'error'
+            });
+            return
+        }
+
         wx.navigateTo({
             url: './detail/detail?orderInfo=' + JSON.stringify(orderInfo)
         })
