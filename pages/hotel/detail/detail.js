@@ -240,6 +240,11 @@ Page({
                         results: results
                     })
                     wx.hideToast();
+                } else {
+                    $Toast({
+                        content: '获取酒店详情信息失败,请稍后再试试~',
+                        type: 'error'
+                    });
                 }
 
             },

@@ -87,7 +87,9 @@
 
     <view wx:for="{{hotelList}}" class="hotel-list">
         <view class="hotel-item" bindtap="showDetail" data-item="{{item}}">
-            <image class="hotel-avatar" src="{{item.picture}}" mode="aspectFill">
+            <image class="hotel-avatar" src="{{item.picture}}" binderror="handleImageError" data-item="{{item}}"
+                   data-index="{{index}}"
+                   mode="aspectFill">
             </image>
             <view class="hotel-info">
                 <view class="hotel-title">
@@ -106,6 +108,7 @@
 
 
     </view>
+    <i-toast id="toast"/>
     <view>
         <loading wx:if="{{showLoading}}">加载中</loading>
     </view>

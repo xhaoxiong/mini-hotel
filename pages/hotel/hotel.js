@@ -1,4 +1,5 @@
 // pages/hotel/hotel.js
+const {$Toast} = require('../../dist/base/index');
 const app = getApp()
 Page({
 
@@ -37,6 +38,16 @@ Page({
         })
     },
 
+    handleImageError: function (e) {
+        let that = this;
+        let list = that.data.hotelList;
+        let index = e.target.dataset.index;
+        list[index].picture = "https://img.hacpai.com/file/2019/04/hotelpicture-a4033054.jpg";
+        that.setData({
+            hotelList: list
+        });
+    },
+
     getHotelList: function () {
         let that = this;
 
@@ -60,12 +71,19 @@ Page({
                 'Authorization': `Bearer ${app.globalData.token}`
             },
             success: res => {
+                if (res.data.code === 10000) {
+                    that.setData({
+                        hotelList: that.data.hotelList.concat(res.data.data.hotelList),
+                    });
+                    wx.hideToast();
+                    console.log(that.data.hotelList);
+                } else {
+                    $Toast({
+                        content: '获取酒店信息失败,请稍后再试试~',
+                        type: 'error'
+                    });
+                }
 
-                that.setData({
-                    hotelList: that.data.hotelList.concat(res.data.data.hotelList),
-                })
-                wx.hideToast();
-                console.log(that.data.hotelList);
             }
         })
     },

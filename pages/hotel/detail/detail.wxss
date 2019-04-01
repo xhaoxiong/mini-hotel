@@ -48,16 +48,22 @@ page {
 .detail-room-info-left {
     margin-top: 4px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
 }
 
 .room-info-name {
-
+    font-weight: 800;
 }
 
 .room-info-standard {
+    font-size: 12px;
+}
 
+.detail-room-info-right p {
+    font-weight: 400;
+    width: 75px;
+    font-size: 14px;
 }
 
 .detail-room-info-right {
@@ -67,12 +73,30 @@ page {
 }
 
 .room-list-pannel {
-    margin: 6px;
+    margin-top: 2px;
     display: flex;
     justify-content: space-between;
+    background-color: #ffffff;
+    padding-left: 14px;
+}
+
+.room-pannel-name {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
 }
 
 .room-pannel-right {
     display: flex;
     align-items: center;
+}
+
+.room-pannel-right p {
+    font-size: 16px;
+}
+.room-info{
+
+}
+.room-info-item{
+
 }

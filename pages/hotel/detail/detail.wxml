@@ -32,26 +32,27 @@
         <view class="detail-room-list">
             <view class="detail-room-item">
                 <image class="detail-room-avatar"
-                       src="https://img.hacpai.com/file/2019/02/2704D806CF5B732301E0761FD588C1DD副本-9e8a92af.jpg"
+                       src="https://img.hacpai.com/file/2019/04/bedpicture-15494190.jpg"
                        mode="aspectFill">
                 </image>
                 <view class="detail-room-info">
                     <view class="detail-room-info-left">
                         <view class="room-info-name">{{item.roomNameCn}}</view>
                         <view class="room-info-standard">
-                            {{item.bedDescription}}-{{item.area}}-{{item.floor}}-{{item.isExtraBed}}
+                            {{item.bedDescription}}-{{item.area}}
+                            {{item.floor}}-{{item.isExtraBed}}
                         </view>
                     </view>
 
                     <view class="detail-room-info-right">
-                        ￥{{item.averagePrice}}起
+                        <p>￥{{item.averagePrice}}起</p>
                         <view bindtap="showPannel" data-index="{{index}}" data-item="{{item}}">
 
                             <view wx:if="{{item.status}}">
-                                <i-icon type="enter"/>
+                                <i-icon type="arrow-right"/>
                             </view>
                             <view wx:else>
-                                换一个图标
+                                <i-icon type="arrow-down"/>
                             </view>
                         </view>
                     </view>
@@ -66,7 +67,7 @@
                 </view>
 
                 <view class="room-pannel-right">
-                    <view>￥{{rItem.averagePrice}}</view>
+                    <p>￥{{rItem.averagePrice}}</p>
                     <i-button bind:click="handleOpen1" data-item="{{rItem}}" size="small">预订</i-button>
                 </view>
             </view>
@@ -78,13 +79,29 @@
     <i-modal title="房间详细信息" actions="{{ actions }}" visible="{{ visible1 }}" bind:ok="payOrder"
              bind:cancel="handleClose1">
         <view class="room-info">
-            {{result.bedInfo}}
+            <view class="room-info-item">
+                床位信息:{{result.bedInfo}}
+            </view>
+            <view class="room-info-item">
+                床位类型:{{result.bedType}}
+            </view>
+            <view class="room-info-item">
+                {{result.mealInfo}}
+            </view>
+            <view class="room-info-item">
+                平均价格: ￥{{result.averagePrice}}
+            </view>
+            <view class="room-info-item">
+                折扣价格: ￥{{result.ratePrice}}
+            </view>
 
-            {{result.bedType}}
-            {{result.mealInfo}}
-            {{result.networkInfo}}
-            {{result.averagePrice}}
-            {{result.ratePrice}}
+
+
+
+
+
+
+
         </view>
     </i-modal>
     <i-toast id="toast"/>
