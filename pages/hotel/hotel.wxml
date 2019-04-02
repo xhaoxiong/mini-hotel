@@ -65,7 +65,7 @@
             </view>
 
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
-            <i-button bind:click="getHotelList" type="primary" size="small">获取全部</i-button>
+            <i-button bind:click="getCityHotelList" type="primary" size="small">获取全部</i-button>
         </view>
 
 

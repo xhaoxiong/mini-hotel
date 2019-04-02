@@ -83,7 +83,7 @@ Page({
         }
 
         let params = that.data.searchParams;
-        params.cityName = app.globalData.realCity;
+        params.cityName = app.globalData.realCity + '';
         params.minPrice = that.data.minPrice;
         params.maxPrice = that.data.maxPrice;
         wx.showToast({
@@ -104,7 +104,7 @@ Page({
                         hotelList: that.data.hotelList.concat(res.data.data.hotelList),
                     });
                     wx.hideToast();
-                    console.log(that.data.hotelList);
+
                 } else {
                     $Toast({
                         content: '获取酒店信息失败,请稍后再试试~',
@@ -116,6 +116,13 @@ Page({
         })
     },
 
+
+    getCityHotelList: function () {
+        let that = this;
+        that.handleClick()
+    },
+
+
     distanceBind: function () {
         let that = this;
         that.setData({
@@ -123,8 +130,7 @@ Page({
             areaState: false,
             selectState: false,
         })
-    }
-    ,
+    },
 
     areaStateBind: function () {
         let that = this;
@@ -191,8 +197,33 @@ Page({
         that.setData({
             cityName: app.globalData.defaultCity,
         })
-    }
-    ,
+    },
+    handleClick() {
+        let that=this;
+        //查询以一下该城市是否支持
+        wx.request({
+            url: "https://mini.xhxblog.cn/hotel/city/check",
+            method: "post",
+            data: {city: app.globalData.defaultCity},
+            header: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            success: res => {
+                console.log(res)
+                if (res.data.code === 10000) {
+                    app.globalData.realCity = res.data.data.realName;
+                    that.onLoad()
+                } else {
+                    $Toast({
+                        content: '该城市暂时没有酒店信息',
+                        type: 'error'
+                    });
+                }
+            }
+        })
+
+
+    },
 
     /**
      * 生命周期函数--监听页面隐藏

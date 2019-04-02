@@ -11,8 +11,8 @@
 <view class="order-panel">
     <view wx:for="{{results}}">
         <view wx:if="{{item.Status===2}}">
-            <i-card title="卡片标题" extra="待付款" extra_color="#2d8cf0" full="true"
-                    thumb="https://img.hacpai.com/2019/01/image-e117a8d2.png">
+            <i-card title="{{item.HotelItemParse.chineseName}}" extra="待付款" extra_color="#2d8cf0" full="true"
+                    thumb="https://img.hacpai.com/file/2019/04/logopicture-8d3b3ad6.jpg">
                 <view slot="content" catchtap="detailHandler" data-item="{{item}}">
                     <view class="order-card-i">订单号:{{item.OrderNumber}}</view>
                     <view class="order-card-i">入住:{{item.InDate}} - 退房:{{item.OutDate}}</view>
@@ -38,8 +38,8 @@
         </view>
 
         <view wx:elif="{{item.Status===3}}">
-            <i-card title="卡片标题" extra="已支付" extra_color="#2d8cf0" full="true"
-                    thumb="https://img.hacpai.com/2019/01/image-e117a8d2.png">
+            <i-card title="{{item.HotelItemParse.chineseName}}" extra="已支付" extra_color="#2d8cf0" full="true"
+                    thumb="https://img.hacpai.com/file/2019/04/logopicture-8d3b3ad6.jpg">
                 <view slot="content" data-item="{{item}}" bindtap="detailHandler">
                     <view class="order-card-i">订单号:{{item.OrderNumber}}</view>
                     <view class="order-card-i">入住:{{item.InDate}} - 退房:{{item.OutDate}}</view>
@@ -55,8 +55,8 @@
         </view>
 
         <view wx:elif="{{item.Status===4}}">
-            <i-card title="卡片标题" extra="已取消" extra_color="#ca0c16" full="true"
-                    thumb="https://img.hacpai.com/2019/01/image-e117a8d2.png">
+            <i-card title="{{item.HotelItemParse.chineseName}}" extra="已取消" extra_color="#ca0c16" full="true"
+                    thumb="https://img.hacpai.com/file/2019/04/logopicture-8d3b3ad6.jpg">
                 <view slot="content" data-item="{{item}}" bindtap="detailHandler">
                     <view class="order-card-i">订单号:{{item.OrderNumber}}</view>
                     <view class="order-card-i">入住:{{item.InDate}} - 退房:{{item.OutDate}}</view>
