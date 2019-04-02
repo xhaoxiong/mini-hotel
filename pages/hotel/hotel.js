@@ -121,7 +121,10 @@ Page({
         let that = this;
         that.handleClick()
     },
-
+    getOnloadHotelList: function () {
+        let that = this;
+        that.onLoad()
+    },
 
     distanceBind: function () {
         let that = this;
@@ -199,7 +202,7 @@ Page({
         })
     },
     handleClick() {
-        let that=this;
+        let that = this;
         //查询以一下该城市是否支持
         wx.request({
             url: "https://mini.xhxblog.cn/hotel/city/check",

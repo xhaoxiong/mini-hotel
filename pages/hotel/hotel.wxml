@@ -19,31 +19,31 @@
 
     <view class="pannel" id="distance-pannel" style="{{(distanceState)?'display: block;':'display: none;'}}">
         <view class="pannel-item">
-            <view class="item-word" bindtap="getHotelList">
+            <view class="item-word" bindtap="getOnloadHotelList">
                 综合排序
             </view>
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
         </view>
-        <view class="pannel-item" >
-            <view class="item-word" bindtap="getHotelList">
+        <view class="pannel-item">
+            <view class="item-word" bindtap="getOnloadHotelList">
                 人气最高
             </view>
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
         </view>
         <view class="pannel-item">
-            <view class="item-word" bindtap="getHotelList">
+            <view class="item-word" bindtap="getOnloadHotelList">
                 距离优先
             </view>
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
         </view>
         <view class="pannel-item">
-            <view class="item-word" bindtap="getHotelList">
+            <view class="item-word" bindtap="getOnloadHotelList">
                 价格最高
             </view>
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
         </view>
         <view class="pannel-item">
-            <view class="item-word" bindtap="getHotelList">
+            <view class="item-word" bindtap="getOnloadHotelList">
                 价格最低
             </view>
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
@@ -79,7 +79,7 @@
                 <input type="number" placeholder="最大价格" style="width: 75px;" bindinput="maxPriceBind"/>
             </view>
             <view style="width: 100%;height: 1px;background-color: #dddddd"></view>
-            <i-button bind:click="getHotelList" type="primary" size="small">筛选</i-button>
+            <i-button bind:click="getOnloadHotelList" type="primary" size="small">筛选</i-button>
         </view>
     </view>
 
