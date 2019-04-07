@@ -377,7 +377,15 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+        let that = this;
+        that.getNotPayCount()
+        if (that.data.current_scroll === 'tab1') {
+            that.getAll()
+        } else if (that.data.current_scroll === 'tab2') {
+            that.getNotPay()
+        } else {
+            that.getPay()
+        }
     },
 
     /**
